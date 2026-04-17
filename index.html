@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Font Việt Linh - Premium Fonts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --vip-gold: #f4b400; --vip-red: #d93025;
@@ -25,17 +25,19 @@
         
         header { 
             background-image: var(--bg-paper); background-size: cover; background-position: center;
-            padding: 12px 25px; display: flex; align-items: center; justify-content: space-between; 
+            padding: 10px 25px; display: flex; align-items: center; justify-content: space-between; 
             border-bottom: 2px solid #d2ccc0; position: sticky; top: 0; z-index: 100;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .logo-area { display: flex; align-items: center; gap: 12px; flex: 1; }
-        .logo-img { height: 42px; width: auto; object-fit: contain; }
-        .logo-text { font-size: 20px; font-weight: 700; color: #333; white-space: nowrap; }
+        .logo-img { height: 48px; width: auto; object-fit: contain; }
+        .logo-info { display: flex; flex-direction: column; }
+        .logo-text { font-size: 19px; font-weight: 800; color: #333; white-space: nowrap; line-height: 1.2; letter-spacing: 0.5px; }
+        .logo-slogan { font-size: 11px; font-style: italic; color: #555; margin-top: 2px; }
 
         .search-area { flex: 2; display: flex; justify-content: center; }
-        .search-container { width: 100%; max-width: 400px; display: flex; border: 1px solid #d2ccc0; border-radius: 24px; padding: 7px 18px; background: rgba(255,255,255,0.8); }
+        .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid #d2ccc0; border-radius: 24px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
         .search-container input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; background: transparent; }
 
         .theme-area { flex: 1; display: flex; justify-content: flex-end; gap: 8px; }
@@ -78,7 +80,10 @@
     <header>
         <div class="logo-area">
             <img src="images/logo.png" class="logo-img" alt="Logo Font Việt Linh">
-            <span class="logo-text">Font Việt Linh</span>
+            <div class="logo-info">
+                <span class="logo-text">FONT VIỆT LINH</span>
+                <span class="logo-slogan">Chữ Việt cho người Việt</span>
+            </div>
         </div>
         <div class="search-area">
             <div class="search-container">
@@ -140,15 +145,13 @@
                 let priceText = "";
                 let isPaid = false;
 
-                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hóa):\s*([0-9.kđĐ]+)/i);
+                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
                 if (priceMatch) {
                     isPaid = true;
                     priceText = "Phí Việt Hoá: <span>" + priceMatch[2].toLowerCase() + "</span>";
                 }
 
-                // XỬ LÝ LINK CHÍNH XÁC: Loại bỏ các thẻ HTML dính liền
                 let downloadLink = "";
-                // Sử dụng [^<"\s]+ để dừng lại ngay khi gặp dấu < (thẻ HTML), dấu ngoặc kép hoặc khoảng trắng
                 const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
                 const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
                 
