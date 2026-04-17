@@ -79,7 +79,7 @@
         .btn-download { 
             background-image: var(--bg-paper); background-size: cover;
             color: #333; padding: 10px 20px; border-radius: 25px; text-decoration: none; 
-            font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: 1px solid #d2ccc0; cursor: pointer;
+            font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: 1px solid #d2ccc0;
         }
         .btn-paid { background-image: none !important; background: var(--vip-red) !important; color: #fff !important; border: none !important; }
 
@@ -138,25 +138,6 @@
         }
         setTheme(localStorage.getItem('font-linh-theme') || 'paper');
 
-        // HÀM CHUYỂN HƯỚNG THÔNG MINH
-        function openMessenger(title) {
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            let url = "";
-            
-            if (isMobile) {
-                // Thử mở app messenger trước
-                url = "fb-messenger://user-thread/FontVietLinh";
-                // Nếu app không phản hồi trong 500ms thì chuyển sang m.me (dự phòng)
-                setTimeout(() => {
-                    window.location.href = "https://m.me/FontVietLinh";
-                }, 500);
-            } else {
-                // Trên PC mở thẳng khung chat fanpage
-                url = "https://www.facebook.com/messages/t/FontVietLinh";
-            }
-            window.location.href = url;
-        }
-
         function fetchPosts() {
             const script = document.createElement('script');
             let url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
@@ -169,6 +150,8 @@
             const container = document.getElementById('font-container');
             if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
             
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
             data.feed.entry.forEach(post => {
                 const title = post.title.$t;
                 const blogLink = post.link.find(l => l.rel === 'alternate').href;
@@ -191,11 +174,11 @@
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
+                // CẬP NHẬT LOGIC: Luôn dùng target="_blank" để mở tab mới
+                let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
+                
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
                 const btnCls = isVip ? "btn-paid" : "btn-free";
-                
-                // Thay đổi link thành sự kiện onclick cho nút Mua ngay
-                const action = isVip ? `onclick="openMessenger('${title}')"` : `href="${downloadLink ? downloadLink : blogLink}" target="_blank"`;
 
                 let img = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
                 if (content.includes('<img')) {
@@ -203,16 +186,7 @@
                     if (m) img = m[1];
                 }
 
-                container.innerHTML += `
-                    <div class="font-card">
-                        ${isVip ? '<div class="badge-vip">PREMIUM</div>' : ''}
-                        <img src="${img}" class="font-img" alt="${title}" loading="lazy">
-                        <div class="font-info">
-                            <div class="font-title">${title}</div>
-                            <div class="font-price">${priceText ? priceText : 'Miễn phí'}</div>
-                            <a ${action} class="btn-download ${btnCls}">${btnTxt}</a>
-                        </div>
-                    </div>`;
+                container.innerHTML += `<div class="font-card">${isVip ? '<div class="badge-vip">PREMIUM</div>' : ''}<img src="${img}" class="font-img" alt="${title}" loading="lazy"><div class="font-info"><div class="font-title">${title}</div><div class="font-price">${priceText ? priceText : 'Miễn phí'}</div><a href="${finalLink}" target="_blank" class="btn-download ${btnCls}">${btnTxt}</a></div></div>`;
             });
             startIndex += maxResults;
         }
