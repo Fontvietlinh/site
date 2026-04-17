@@ -25,43 +25,51 @@
         
         header { 
             background-image: var(--bg-paper); background-size: cover; background-position: center;
-            padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; 
-            border-bottom: 2px solid #d2ccc0; position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); gap: 10px;
+            padding: 12px 20px; border-bottom: 2px solid #d2ccc0; position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .logo-area { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-        .logo-img { height: 42px; width: auto; object-fit: contain; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 45px; width: auto; object-fit: contain; }
         .logo-info { display: flex; flex-direction: column; }
         .logo-text { font-size: 18px; font-weight: 800; color: #333; white-space: nowrap; line-height: 1.1; letter-spacing: 0.5px; }
-        .logo-slogan { font-size: 10px; font-style: italic; color: #555; margin-top: 2px; white-space: nowrap; display: block; }
+        .logo-slogan { font-size: 11px; font-style: italic; color: #555; margin-top: 3px; white-space: nowrap; }
 
-        .search-area { flex-grow: 1; display: flex; justify-content: center; min-width: 0; }
-        .search-container { width: 100%; max-width: 320px; display: flex; border: 1px solid #d2ccc0; border-radius: 20px; padding: 5px 12px; background: rgba(255,255,255,0.8); }
-        .search-container input { border: none; outline: none; width: 100%; font-size: 13px; color: #000; background: transparent; }
+        .search-area { flex-grow: 1; display: flex; justify-content: center; margin: 0 15px; }
+        .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid #d2ccc0; border-radius: 20px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
+        .search-container input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; background: transparent; }
 
-        .theme-area { display: flex; gap: 8px; flex-shrink: 0; }
+        .theme-area { display: flex; gap: 10px; }
         .theme-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; transition: 0.2s; }
         .btn-white { background: #ffffff; }
         .btn-paper { background: #e3dec6; }
         .btn-dark { background: #242526; }
 
-        /* Tối ưu hiển thị di động */
+        /* TỐI ƯU DI ĐỘNG */
         @media (max-width: 600px) {
-            header { padding: 8px 12px; gap: 8px; }
-            .logo-text { font-size: 15px; }
-            .logo-slogan { font-size: 8.5px; }
-            .logo-img { height: 34px; }
-            .theme-btn { width: 14px; height: 14px; }
-            .search-container { padding: 4px 10px; }
+            header { padding: 10px; }
+            .header-top { flex-wrap: wrap; }
+            .logo-area { flex: 1; }
+            .logo-img { height: 38px; }
+            .logo-text { font-size: 16px; }
+            .logo-slogan { font-size: 10px; }
+            
+            /* Đưa tìm kiếm xuống dòng dưới khi ở mobile */
+            .search-area { order: 3; width: 100%; margin: 10px 0 0 0; }
+            .search-container { max-width: 100%; }
+            
+            .theme-area { order: 2; gap: 6px; }
+            .theme-btn { width: 16px; height: 16px; }
         }
 
-        nav { background: var(--nav-bg); padding: 10px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
+        nav { background: var(--nav-bg); padding: 12px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
         nav a { margin: 0 12px; text-decoration: none; color: var(--text-sub); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         nav a:hover, nav a.active { color: #000; }
         .nav-external { color: var(--vip-red) !important; font-weight: 700; }
 
-        .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 30px; max-width: 1300px; margin: 0 auto; }
+        .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 25px; max-width: 1300px; margin: 0 auto; }
         .font-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; transition: 0.3s; backdrop-filter: blur(5px); }
         .font-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         
@@ -86,22 +94,26 @@
 <body>
 
     <header>
-        <div class="logo-area">
-            <img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH">
-            <div class="logo-info">
-                <span class="logo-text">FONT VIỆT LINH</span>
-                <span class="logo-slogan">Chữ Việt cho người Việt</span>
+        <div class="header-top">
+            <div class="logo-area">
+                <img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH">
+                <div class="logo-info">
+                    <span class="logo-text">FONT VIỆT LINH</span>
+                    <span class="logo-slogan">Chữ Việt cho người Việt</span>
+                </div>
             </div>
-        </div>
-        <div class="search-area">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
+
+            <div class="search-area">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
+                </div>
             </div>
-        </div>
-        <div class="theme-area">
-            <div class="theme-btn btn-white" onclick="setTheme('white')"></div>
-            <div class="theme-btn btn-paper" onclick="setTheme('paper')"></div>
-            <div class="theme-btn btn-dark" onclick="setTheme('dark')"></div>
+
+            <div class="theme-area">
+                <div class="theme-btn btn-white" onclick="setTheme('white')"></div>
+                <div class="theme-btn btn-paper" onclick="setTheme('paper')"></div>
+                <div class="theme-btn btn-dark" onclick="setTheme('dark')"></div>
+            </div>
         </div>
     </header>
 
