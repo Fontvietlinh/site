@@ -47,7 +47,6 @@
         .btn-paper { background: #e3dec6; }
         .btn-dark { background: #242526; }
 
-        /* TỐI ƯU DI ĐỘNG */
         @media (max-width: 600px) {
             header { padding: 10px; }
             .header-top { flex-wrap: wrap; }
@@ -55,11 +54,8 @@
             .logo-img { height: 38px; }
             .logo-text { font-size: 16px; }
             .logo-slogan { font-size: 10px; }
-            
-            /* Đưa tìm kiếm xuống dòng dưới khi ở mobile */
             .search-area { order: 3; width: 100%; margin: 10px 0 0 0; }
             .search-container { max-width: 100%; }
-            
             .theme-area { order: 2; gap: 6px; }
             .theme-btn { width: 16px; height: 16px; }
         }
@@ -102,13 +98,11 @@
                     <span class="logo-slogan">Chữ Việt cho người Việt</span>
                 </div>
             </div>
-
             <div class="search-area">
                 <div class="search-container">
                     <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
                 </div>
             </div>
-
             <div class="theme-area">
                 <div class="theme-btn btn-white" onclick="setTheme('white')"></div>
                 <div class="theme-btn btn-paper" onclick="setTheme('paper')"></div>
@@ -164,8 +158,7 @@
                 
                 let priceText = "";
                 let isPaid = false;
-
-                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
+                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hóa):\s*([0-9.kđĐ]+)/i);
                 if (priceMatch) {
                     isPaid = true;
                     priceText = "Phí Việt Hoá: <span>" + priceMatch[2].toLowerCase() + "</span>";
@@ -174,13 +167,14 @@
                 let downloadLink = "";
                 const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
                 const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
-                
                 if (driveMatch) { downloadLink = driveMatch[0].replace(/&amp;/g, '&'); }
                 else if (bitlyMatch) { downloadLink = bitlyMatch[0]; }
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
-                let finalLink = isVip ? `https://m.me/FontVietLinh?text=Tôi muốn mua font: ${title}` : (downloadLink ? downloadLink : blogLink);
+                // GIẢI PHÁP MỚI: Dùng link Page Messages để tránh bắt đăng nhập trên PC
+                let finalLink = isVip ? `https://www.facebook.com/messages/t/FontVietLinh` : (downloadLink ? downloadLink : blogLink);
+                
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
                 const btnCls = isVip ? "btn-paid" : "btn-free";
 
