@@ -150,7 +150,6 @@
             const container = document.getElementById('font-container');
             if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
             
-            // Kiểm tra thiết bị là Mobile hay PC
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
             data.feed.entry.forEach(post => {
@@ -175,11 +174,10 @@
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
-                // CẬP NHẬT LOGIC LINK THÔNG MINH
                 let finalLink = "";
                 if (isVip) {
-                    // Nếu là điện thoại thì dùng m.me hoặc fb-messenger protocol, nếu là PC thì dùng link messages web
-                    finalLink = isMobile ? `https://m.me/FontVietLinh` : `https://www.facebook.com/messages/t/FontVietLinh`;
+                    // SỬ DỤNG DEEP LINK CHO MOBILE ĐỂ MỞ APP TỨC THÌ
+                    finalLink = isMobile ? `fb-messenger://user-thread/FontVietLinh` : `https://www.facebook.com/messages/t/FontVietLinh`;
                 } else {
                     finalLink = downloadLink ? downloadLink : blogLink;
                 }
