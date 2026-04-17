@@ -150,8 +150,6 @@
             const container = document.getElementById('font-container');
             if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
             
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
             data.feed.entry.forEach(post => {
                 const title = post.title.$t;
                 const blogLink = post.link.find(l => l.rel === 'alternate').href;
@@ -160,7 +158,7 @@
                 
                 let priceText = "";
                 let isPaid = false;
-                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
+                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hóa):\s*([0-9.kđĐ]+)/i);
                 if (priceMatch) {
                     isPaid = true;
                     priceText = "Phí Việt Hoá: <span>" + priceMatch[2].toLowerCase() + "</span>";
@@ -174,13 +172,8 @@
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
-                let finalLink = "";
-                if (isVip) {
-                    // SỬ DỤNG DEEP LINK CHO MOBILE ĐỂ MỞ APP TỨC THÌ
-                    finalLink = isMobile ? `fb-messenger://user-thread/FontVietLinh` : `https://www.facebook.com/messages/t/FontVietLinh`;
-                } else {
-                    finalLink = downloadLink ? downloadLink : blogLink;
-                }
+                // GIẢI PHÁP ỔN ĐỊNH NHẤT: Dùng m.me cho mọi thiết bị
+                let finalLink = isVip ? `https://m.me/FontVietLinh` : (downloadLink ? downloadLink : blogLink);
                 
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
                 const btnCls = isVip ? "btn-paid" : "btn-free";
