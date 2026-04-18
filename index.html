@@ -8,7 +8,7 @@
     <style>
         :root { 
             --vip-gold: #F77F00;
-            --vip-red: #0ABAB5; 
+            --vip-red: #0ABAB5; /* Linh đổi màu nút Mua ngay & Giá tiền ở đây */
             --bg: #ffffff; --card-bg: #ffffff; --text-main: #202124; --text-sub: #5f6368; --border: #dfe1e5; --nav-bg: #ffffff;
             --btn-free-bg: #547792;
             --btn-free-text: #ffffff;
@@ -93,20 +93,19 @@
         .font-price { color: var(--vip-red); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
         .font-price span { text-transform: lowercase; }
 
-        /* ĐỊNH NGHĨA NÚT CHUNG */
+        /* PHẦN QUAN TRỌNG: Đã đổi background thành biến --vip-red để Linh tự chỉnh */
         .btn-download { 
             background: var(--btn-free-bg);
             color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
             font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none;
-            transition: 0.3s ease; /* Hiệu ứng mượt */
+            transition: 0.3s ease;
         }
-        .btn-paid { background: #F77F00 !important; color: #fff !important; }
+        .btn-paid { background: var(--vip-red) !important; color: #fff !important; }
 
-        /* HIỆU ỨNG PHÓNG TO KHI RÊ CHUỘT (HOVER) */
         .btn-download:hover {
-            transform: scale(1.05); /* Phóng to 5% */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Đổ bóng mạnh hơn */
-            filter: brightness(1.1); /* Sáng hơn một chút */
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            filter: brightness(1.1);
         }
 
         .load-more-container { text-align: center; padding: 50px; }
@@ -115,7 +114,6 @@
     </style>
 </head>
 <body>
-
     <header>
         <div class="header-top">
             <div class="logo-area">
@@ -176,15 +174,12 @@
         function render(data) {
             const container = document.getElementById('font-container');
             if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
-            
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
             data.feed.entry.forEach(post => {
                 const title = post.title.$t;
                 const blogLink = post.link.find(l => l.rel === 'alternate').href;
                 const content = post.content.$t;
                 const labels = post.category ? post.category.map(c => c.term) : [];
-                
                 let priceText = "";
                 let isPaid = false;
                 const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
@@ -192,26 +187,20 @@
                     isPaid = true;
                     priceText = "Phí Việt Hoá: <span>" + priceMatch[2].toLowerCase() + "</span>";
                 }
-
                 let downloadLink = "";
                 const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
                 const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
                 if (driveMatch) { downloadLink = driveMatch[0].replace(/&amp;/g, '&'); }
                 else if (bitlyMatch) { downloadLink = bitlyMatch[0]; }
-
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
-                
                 let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
-                
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
                 const btnCls = isVip ? "btn-paid" : "btn-free";
-
                 let img = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
                 if (content.includes('<img')) {
                     const m = content.match(/src="([^"]+)"/);
                     if (m) img = m[1];
                 }
-
                 container.innerHTML += `<div class="font-card">${isVip ? '<div class="badge-vip">PREMIUM</div>' : ''}<img src="${img}" class="font-img" alt="${title}" loading="lazy"><div class="font-info"><div class="font-title">${title}</div><div class="font-price">${priceText ? priceText : 'Miễn phí'}</div><a href="${finalLink}" target="_blank" class="btn-download ${btnCls}">${btnTxt}</a></div></div>`;
             });
             startIndex += maxResults;
