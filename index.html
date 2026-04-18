@@ -7,16 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --vip-gold: #f4b400; --vip-red: #d93025;
+            --vip-gold: #F77F00; /* Màu cam chủ đạo cho VIP */
+            --vip-red: #F77F00; 
             --bg: #ffffff; --card-bg: #ffffff; --text-main: #202124; --text-sub: #5f6368; --border: #dfe1e5; --nav-bg: #ffffff;
             --btn-free-bg: #003049; --btn-free-text: #ffffff;
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
-        /* GIAO DIỆN PAPER (BẢNG MÀU LINH CHỌN) */
+        /* GIAO DIỆN PAPER */
         [data-theme='paper'] {
             --vip-gold: #F77F00;
-            --vip-red: #003049;
+            --vip-red: #F77F00;
             --bg: #EED9B9;
             --card-bg: #FFEDCE;
             --text-main: #F77F00;
@@ -28,11 +29,11 @@
             background-image: var(--bg-paper); background-attachment: fixed;
         }
 
-        /* GIAO DIỆN ĐEN (CẬP NHẬT MÀU NÚT VIP) */
+        /* GIAO DIỆN ĐEN */
         [data-theme='dark'] {
             --bg: #121212; --card-bg: #1e1e1e; --text-main: #e4e6eb; --text-sub: #b0b3b8; --border: #333; --nav-bg: #1a1a1a;
-            --vip-red: #F77F00; /* Đổi màu nút Mua ngay sang cam rực cho nổi bật */
-            --btn-free-bg: #333;
+            --vip-red: #F77F00; 
+            --btn-free-bg: #003049; /* Đã đổi màu nút tải ngay ở giao diện đen */
         }
 
         body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding: 0; transition: 0.3s; }
@@ -44,7 +45,6 @@
         }
 
         .header-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
-
         .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-img { height: 45px; width: auto; object-fit: contain; }
         .logo-info { display: flex; flex-direction: column; }
@@ -96,7 +96,7 @@
             color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
             font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none;
         }
-        .btn-paid { background: var(--vip-red) !important; color: #fff !important; }
+        .btn-paid { background: #F77F00 !important; color: #fff !important; }
 
         .load-more-container { text-align: center; padding: 50px; }
         #load-more-btn { background: var(--nav-bg); color: #fff; border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; }
@@ -189,7 +189,6 @@
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
-                // Link thông minh theo thiết bị
                 let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
                 
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
