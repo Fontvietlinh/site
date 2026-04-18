@@ -11,17 +11,18 @@
            ============================================================ */
         :root { 
             --vip-gold: #F77F00;      /* 1. Nhãn PREMIUM trên ảnh */
-            --vip-price: #0ABAB5;     /* 2. Màu chữ GIÁ TIỀN (Màu xanh Linh chọn) */
-            --btn-paid-bg: #0ABAB5;   /* 3. Nền nút MUA NGAY */
+            --vip-price: #0ABAB5;     /* 2. Màu chữ GIÁ TIỀN */
+            --btn-paid-bg: #F77F00;   /* 3. Nền nút MUA NGAY */
             --preview-bg: #ffffff;    /* 4. Nền ô chứa tên font (dưới ảnh) */
             --preview-text: #202124;  /* 5. Chữ tên Font */
             --bg: #ffffff;            /* 6. Nền toàn bộ website */
-            --text-sub: #5f6368;      /* 7. Chữ Menu điều hướng */
-            --border: #dfe1e5;        /* 8. Đường viền ô và khung tìm kiếm */
-            --nav-bg: #ffffff;        /* 9. Nền của thanh Menu ngang */
-            --btn-free-bg: #9AEBA3;   /* 10. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 11. Chữ trong nút TẢI NGAY */
-            --load-more-text: #F77F00;/* 12. Chữ nút XEM THÊM cuối trang */
+            --nav-bg: #ffffff;        /* 7. Nền của thanh Menu ngang */
+            --nav-text: #5f6368;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG - Xám) */
+            --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT - Cam) */
+            --border: #dfe1e5;        /* 10. Đường viền ô và khung tìm kiếm */
+            --btn-free-bg: #9AEBA3;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
+            --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
+            --load-more-text: #F77F00;/* 13. Chữ nút XEM THÊM cuối trang */
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
@@ -33,12 +34,13 @@
             --preview-bg: #FFEDCE;    /* 4. Nền ô chứa tên font (dưới ảnh) */
             --preview-text: #F77F00;  /* 5. Chữ tên Font */
             --bg: #EED9B9;            /* 6. Nền toàn bộ website */
-            --text-sub: #FFFFFF;      /* 7. Chữ Menu điều hướng */
-            --border: #F77F00;        /* 8. Đường viền ô và khung tìm kiếm */
-            --nav-bg: #132440;        /* 9. Nền của thanh Menu ngang */
-            --btn-free-bg: #003049;   /* 10. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 11. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 12. Chữ nút XEM THÊM cuối trang */
+            --nav-bg: #132440;        /* 7. Nền của thanh Menu ngang */
+            --nav-text: #FFFFFF;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG) */
+            --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT) */
+            --border: #F77F00;        /* 10. Đường viền ô và khung tìm kiếm */
+            --btn-free-bg: #E89A0C;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
+            --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
+            --load-more-text: #ffffff;/* 13. Chữ nút XEM THÊM cuối trang */
         }
 
         /* --- GIAO DIỆN 3: ĐEN (DARK MODE) --- */
@@ -49,38 +51,35 @@
             --preview-bg: #1e1e1e;    /* 4. Nền ô chứa tên font (dưới ảnh) */
             --preview-text: #e4e6eb;  /* 5. Chữ tên Font */
             --bg: #121212;            /* 6. Nền toàn bộ website */
-            --text-sub: #b0b3b8;      /* 7. Chữ Menu điều hướng */
-            --border: #333333;        /* 8. Đường viền ô và khung tìm kiếm */
-            --nav-bg: #1a1a1a;        /* 9. Nền của thanh Menu ngang */
-            --btn-free-bg: #003049;   /* 10. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 11. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 12. Chữ nút XEM THÊM cuối trang */
+            --nav-bg: #1a1a1a;        /* 7. Nền của thanh Menu ngang */
+            --nav-text: #b0b3b8;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG) */
+            --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT) */
+            --border: #333333;        /* 10. Đường viền ô và khung tìm kiếm */
+            --btn-free-bg: #022859;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
+            --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
+            --load-more-text: #ffffff;/* 13. Chữ nút XEM THÊM cuối trang */
         }
 
         /* --- NÚT ĐỔI GIAO DIỆN (3 NÚT TRÒN GÓC PHẢI) --- */
         .theme-area { display: flex; gap: 10px; }
         .theme-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; transition: 0.2s; }
-        
-        .btn-white { background: #ffffff; }  /* Màu nút tròn Trắng */
-        .btn-paper { background: #EED9B9; }  /* Màu nút tròn Paper */
-        .btn-dark  { background: #242526; }  /* Màu nút tròn Đen */
+        .btn-white { background: #ffffff; }
+        .btn-paper { background: #EED9B9; }
+        .btn-dark  { background: #242526; }
 
         /* --- CẤU TRÚC GIAO DIỆN CỐ ĐỊNH --- */
         body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--preview-text); margin: 0; padding: 0; transition: 0.3s; }
-        
         header { 
             background-image: var(--bg-paper); background-size: cover; background-position: center;
             padding: 12px 20px; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         .header-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
         .logo-area { display: flex; align-items: center; gap: 12px; }
         .logo-img { height: 45px; width: auto; object-fit: contain; }
         .logo-info { display: flex; flex-direction: column; }
         .logo-text { font-size: 18px; font-weight: 800; color: #333; white-space: nowrap; line-height: 1.1; letter-spacing: 0.5px; }
         .logo-slogan { font-size: 11px; font-style: italic; color: #555; margin-top: 3px; white-space: nowrap; }
-
         .search-area { flex-grow: 1; display: flex; justify-content: center; margin: 0 15px; }
         .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid var(--border); border-radius: 20px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
         .search-container input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; background: transparent; }
@@ -99,29 +98,20 @@
         }
 
         nav { background: var(--nav-bg); padding: 12px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
-        nav a { margin: 0 12px; text-decoration: none; color: var(--text-sub); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        nav a:hover, nav a.active { color: var(--vip-gold); }
-        .nav-external { color: var(--vip-gold) !important; font-weight: 700; }
+        nav a { margin: 0 12px; text-decoration: none; color: var(--nav-text); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--nav-text-active); }
+        .nav-external { color: var(--nav-text-active) !important; font-weight: 700; }
 
         .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 25px; max-width: 1300px; margin: 0 auto; }
         .font-card { background: var(--preview-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; transition: 0.3s; backdrop-filter: blur(5px); }
         .font-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        
         .badge-vip { position: absolute; top: 12px; right: 12px; background: var(--vip-gold); color: #fff; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; z-index: 1; }
         .font-img { width: 100%; height: 190px; object-fit: cover; background: #f8f9fa; border-bottom: 1px solid var(--border); }
-        
         .font-info { padding: 20px; text-align: center; background: var(--preview-bg); }
         .font-title { font-weight: 600; font-size: 15px; color: var(--preview-text); margin-bottom: 5px; line-height: 1.4; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
         .font-price { color: var(--vip-price); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
-        
-        .btn-download { 
-            background: var(--btn-free-bg);
-            color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
-            font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none;
-            transition: 0.3s ease;
-        }
+        .btn-download { background: var(--btn-free-bg); color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none; transition: 0.3s ease; }
         .btn-paid { background: var(--btn-paid-bg) !important; color: #fff !important; }
-
         .btn-download:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); filter: brightness(1.1); }
         .load-more-container { text-align: center; padding: 50px; }
         #load-more-btn { background: var(--nav-bg); color: var(--load-more-text); border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; }
@@ -157,7 +147,7 @@
         <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
         <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
         <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" class="nav-external">Gói 4500 font</a>
-        <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" class="nav-external">Gói Cập Nhật T1-T6</a>
+        <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" class="nav-external">Gói Cập Nhật T1-T6</a>
         <a href="https://www.facebook.com/FontVietLinh/" target="_blank">Liên hệ</a>
         <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
     </nav>
