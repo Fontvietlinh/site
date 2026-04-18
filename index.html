@@ -9,23 +9,37 @@
         :root { 
             --vip-gold: #f4b400; --vip-red: #d93025;
             --bg: #ffffff; --card-bg: #ffffff; --text-main: #202124; --text-sub: #5f6368; --border: #dfe1e5; --nav-bg: #ffffff;
+            --btn-free-bg: #003049; --btn-free-text: #ffffff;
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
+        /* GIAO DIỆN PAPER (BẢNG MÀU LINH CHỌN) */
         [data-theme='paper'] {
-            --bg: #fdfcf5; --card-bg: rgba(255, 255, 255, 0.6); --text-main: #3e3a35; --nav-bg: transparent; --border: #d2ccc0;
+            --vip-gold: #F77F00;
+            --vip-red: #003049;
+            --bg: #EED9B9;
+            --card-bg: #FFEDCE;
+            --text-main: #F77F00;
+            --text-sub: #FFFFFF;
+            --border: #F77F00;
+            --nav-bg: #132440;
+            --btn-free-bg: #003049;
+            --btn-free-text: #ffffff;
             background-image: var(--bg-paper); background-attachment: fixed;
         }
 
+        /* GIAO DIỆN ĐEN (CẬP NHẬT MÀU NÚT VIP) */
         [data-theme='dark'] {
             --bg: #121212; --card-bg: #1e1e1e; --text-main: #e4e6eb; --text-sub: #b0b3b8; --border: #333; --nav-bg: #1a1a1a;
+            --vip-red: #F77F00; /* Đổi màu nút Mua ngay sang cam rực cho nổi bật */
+            --btn-free-bg: #333;
         }
 
         body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding: 0; transition: 0.3s; }
         
         header { 
             background-image: var(--bg-paper); background-size: cover; background-position: center;
-            padding: 12px 20px; border-bottom: 2px solid #d2ccc0; position: sticky; top: 0; z-index: 100;
+            padding: 12px 20px; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
@@ -38,13 +52,13 @@
         .logo-slogan { font-size: 11px; font-style: italic; color: #555; margin-top: 3px; white-space: nowrap; }
 
         .search-area { flex-grow: 1; display: flex; justify-content: center; margin: 0 15px; }
-        .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid #d2ccc0; border-radius: 20px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
+        .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid var(--border); border-radius: 20px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
         .search-container input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; background: transparent; }
 
         .theme-area { display: flex; gap: 10px; }
         .theme-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; transition: 0.2s; }
         .btn-white { background: #ffffff; }
-        .btn-paper { background: #e3dec6; }
+        .btn-paper { background: #EED9B9; }
         .btn-dark { background: #242526; }
 
         @media (max-width: 600px) {
@@ -62,8 +76,8 @@
 
         nav { background: var(--nav-bg); padding: 12px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
         nav a { margin: 0 12px; text-decoration: none; color: var(--text-sub); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        nav a:hover, nav a.active { color: #000; }
-        .nav-external { color: var(--vip-red) !important; font-weight: 700; }
+        nav a:hover, nav a.active { color: var(--vip-gold); }
+        .nav-external { color: var(--vip-gold) !important; font-weight: 700; }
 
         .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 25px; max-width: 1300px; margin: 0 auto; }
         .font-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; transition: 0.3s; backdrop-filter: blur(5px); }
@@ -73,18 +87,19 @@
         .font-img { width: 100%; height: 190px; object-fit: cover; background: #f8f9fa; border-bottom: 1px solid var(--border); }
         .font-info { padding: 20px; text-align: center; }
         .font-title { font-weight: 600; font-size: 15px; color: var(--text-main); margin-bottom: 5px; line-height: 1.4; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+        
         .font-price { color: var(--vip-red); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
         .font-price span { text-transform: lowercase; }
 
         .btn-download { 
-            background-image: var(--bg-paper); background-size: cover;
-            color: #333; padding: 10px 20px; border-radius: 25px; text-decoration: none; 
-            font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: 1px solid #d2ccc0;
+            background: var(--btn-free-bg);
+            color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
+            font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none;
         }
-        .btn-paid { background-image: none !important; background: var(--vip-red) !important; color: #fff !important; border: none !important; }
+        .btn-paid { background: var(--vip-red) !important; color: #fff !important; }
 
         .load-more-container { text-align: center; padding: 50px; }
-        #load-more-btn { background-image: var(--bg-paper); background-size: cover; border: 2px solid #d2ccc0; color: #333; padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; }
+        #load-more-btn { background: var(--nav-bg); color: #fff; border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -174,7 +189,7 @@
 
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
                 
-                // CẬP NHẬT LOGIC: Luôn dùng target="_blank" để mở tab mới
+                // Link thông minh theo thiết bị
                 let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
                 
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
