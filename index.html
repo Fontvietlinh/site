@@ -17,12 +17,12 @@
             --preview-text: #202124;  /* 5. Chữ tên Font */
             --bg: #ffffff;            /* 6. Nền toàn bộ website */
             --nav-bg: #ffffff;        /* 7. Nền của thanh Menu ngang */
-            --nav-text: #5f6368;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG - Xám) */
-            --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT - Cam) */
+            --nav-text: #0ABAB5;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG - Đã đổi sang Xanh) */
+            --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT) */
             --border: #dfe1e5;        /* 10. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #0aba88;   /* 11. Nền nút TẢI NGAY (Màu mới: Xanh lá nhạt) */
+            --btn-free-bg: #0aba88;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
             --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
-            --load-more-text: #F77F00;/* 13. Chữ nút XEM THÊM cuối trang */
+            --load-more-text: #0ABAB5;/* 13. Màu CHỮ và VIỀN nút XEM THÊM (Đã đổi sang Xanh) */
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
@@ -38,9 +38,9 @@
             --nav-text: #FFFFFF;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG) */
             --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT) */
             --border: #F77F00;        /* 10. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #E89A0C;   /* 11. Nền nút TẢI NGAY (Màu mới: Vàng nghệ) */
+            --btn-free-bg: #E89A0C;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
             --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 13. Chữ nút XEM THÊM cuối trang */
+            --load-more-text: #ffffff;/* 13. Màu CHỮ và VIỀN nút XEM THÊM */
         }
 
         /* --- GIAO DIỆN 3: ĐEN (DARK MODE) --- */
@@ -55,9 +55,9 @@
             --nav-text: #b0b3b8;      /* 8. MÀU CHỮ MENU (LÚC BÌNH THƯỜNG) */
             --nav-text-active: #F77F00;/* 9. MÀU CHỮ MENU (LÚC CHỌN/RÊ CHUỘT) */
             --border: #333333;        /* 10. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #022859;   /* 11. Nền nút TẢI NGAY (Màu mới: Xanh dương đậm) */
+            --btn-free-bg: #022859;   /* 11. Nền nút TẢI NGAY (Miễn phí) */
             --btn-free-text: #ffffff; /* 12. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 13. Chữ nút XEM THÊM cuối trang */
+            --load-more-text: #ffffff;/* 13. Màu CHỮ và VIỀN nút XEM THÊM */
         }
 
         /* --- NÚT ĐỔI GIAO DIỆN (3 NÚT TRÒN GÓC PHẢI) --- */
@@ -100,7 +100,7 @@
         nav { background: var(--nav-bg); padding: 12px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
         nav a { margin: 0 12px; text-decoration: none; color: var(--nav-text); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         nav a:hover, nav a.active { color: var(--nav-text-active); }
-        .nav-external { color: var(--nav-text-active) !important; font-weight: 700; }
+        .nav-external { color: var(--nav-text) !important; font-weight: 700; } /* Đồng bộ màu xanh cho các gói Link */
 
         .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 25px; max-width: 1300px; margin: 0 auto; }
         .font-card { background: var(--preview-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; transition: 0.3s; backdrop-filter: blur(5px); }
@@ -116,7 +116,12 @@
         .btn-download:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); filter: brightness(1.1); }
         
         .load-more-container { text-align: center; padding: 50px; }
-        #load-more-btn { background: var(--nav-bg); color: var(--load-more-text); border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        #load-more-btn { 
+            background: var(--nav-bg); 
+            color: var(--load-more-text); 
+            border: 2px solid var(--load-more-text); /* Đã liên kết boder vào màu xanh Linh chọn */
+            padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; 
+        }
         #load-more-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
@@ -200,10 +205,7 @@
                 if (driveMatch) { downloadLink = driveMatch[0].replace(/&amp;/g, '&'); }
                 else if (bitlyMatch) { downloadLink = bitlyMatch[0]; }
                 const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
-                
-                // Logic chuyển hướng tin nhắn chuẩn (PC tab mới, Mobile vào App)
                 let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
-                
                 const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
                 const btnCls = isVip ? "btn-paid" : "btn-free";
                 let img = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
