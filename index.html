@@ -603,7 +603,7 @@
       <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
       <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" rel="noopener noreferrer" class="nav-external">Gói 4500 font</a>
       <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
-      <a href="https://www.facebook.com/FontVietLinh/" target="_blank" rel="noopener noreferrer">Liên hệ</a>
+      <a onclick="openContact()" style="cursor:pointer">Liên hệ</a>
       <a href="https://zalo.me/0902922811" target="_blank" rel="noopener noreferrer">Zalo</a>
       <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()" aria-label="Sắp xếp A-Z">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>
@@ -764,6 +764,12 @@
       totalLoaded = 0;
       document.getElementById('load-more-btn').innerText = "Xem thêm font";
       fetchPosts();
+    }
+
+    function openContact() {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const url = isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh";
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     fetchPosts();
