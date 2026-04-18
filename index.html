@@ -6,38 +6,59 @@
     <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ============================================================
+           GIAO DIỆN 1: TRẮNG (MẶC ĐỊNH)
+           ============================================================ */
         :root { 
-            --vip-gold: #F77F00;
-            --vip-red: #0ABAB5; /* Linh đổi màu nút Mua ngay & Giá tiền ở đây */
-            --bg: #ffffff; --card-bg: #ffffff; --text-main: #202124; --text-sub: #0ABAB5; --border: #dfe1e5; --nav-bg: #ffffff;
-            --btn-free-bg: #6FCF97;
-            --btn-free-text: #ffffff;
-            --load-more-text: #F77F00;
+            --vip-gold: #F77F00;      /* Màu cam của nhãn PREMIUM */
+            --vip-red: #0ABAB5;       /* Màu của GIÁ TIỀN và nút MUA NGAY */
+            --bg: #ffffff;            /* Màu nền của toàn bộ trang web */
+            --card-bg: #ffffff;       /* Màu nền của từng ô chứa font */
+            --text-main: #202124;     /* Màu chữ của tên Font */
+            --text-sub: #5f6368;      /* Màu chữ của Menu điều hướng */
+            --border: #dfe1e5;        /* Màu đường viền khung và ô font */
+            --nav-bg: #ffffff;        /* Màu nền của thanh Menu (Tất cả, Việt hóa...) */
+            --btn-free-bg: #547792;   /* Màu nền nút TẢI NGAY (Miễn phí) */
+            --btn-free-text: #ffffff; /* Màu chữ bên trong nút TẢI NGAY */
+            --load-more-text: #F77F00;/* Màu chữ nút XEM THÊM FONT cuối trang */
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
+        /* ============================================================
+           GIAO DIỆN 2: PAPER (GIẤY CŨ)
+           ============================================================ */
         [data-theme='paper'] {
-            --vip-gold: #F77F00;
-            --vip-red: #F77F00;
-            --bg: #EED9B9;
-            --card-bg: #FFEDCE;
-            --text-main: #F77F00;
-            --text-sub: #FFFFFF;
-            --border: #F77F00;
-            --nav-bg: #132440;
-            --btn-free-bg: #FCBF49;
-            --btn-free-text: #ffffff;
-            --load-more-text: #ffffff;
-            background-image: var(--bg-paper); background-attachment: fixed;
+            --vip-gold: #F77F00;      /* Màu cam nhãn PREMIUM */
+            --vip-red: #F77F00;       /* Màu GIÁ TIỀN và nút MUA NGAY */
+            --bg: #EED9B9;            /* Màu nền trang (màu giấy) */
+            --card-bg: #FFEDCE;       /* Màu nền ô chứa font */
+            --text-main: #F77F00;     /* Màu chữ tên Font */
+            --text-sub: #FFFFFF;      /* Màu chữ Menu */
+            --border: #F77F00;        /* Màu đường viền */
+            --nav-bg: #132440;        /* Màu nền thanh Menu */
+            --btn-free-bg: #003049;   /* Màu nền nút TẢI NGAY */
+            --btn-free-text: #ffffff; /* Màu chữ nút TẢI NGAY */
+            --load-more-text: #ffffff;/* Màu chữ nút XEM THÊM */
         }
 
+        /* ============================================================
+           GIAO DIỆN 3: ĐEN (DARK MODE)
+           ============================================================ */
         [data-theme='dark'] {
-            --bg: #121212; --card-bg: #1e1e1e; --text-main: #e4e6eb; --text-sub: #b0b3b8; --border: #333; --nav-bg: #1a1a1a;
-            --vip-red: #F77F00; 
-            --btn-free-bg: #FCBF49;
-            --load-more-text: #ffffff;
+            --vip-gold: #F77F00;      /* Màu cam nhãn PREMIUM */
+            --vip-red: #F77F00;       /* Màu GIÁ TIỀN và nút MUA NGAY */
+            --bg: #121212;            /* Màu nền đen toàn trang */
+            --card-bg: #1e1e1e;       /* Màu nền ô chứa font */
+            --text-main: #e4e6eb;     /* Màu chữ tên Font */
+            --text-sub: #b0b3b8;      /* Màu chữ Menu */
+            --border: #333333;        /* Màu đường viền */
+            --nav-bg: #1a1a1a;        /* Màu nền thanh Menu */
+            --btn-free-bg: #003049;   /* Màu nền nút TẢI NGAY */
+            --btn-free-text: #ffffff; /* Màu chữ nút TẢI NGAY */
+            --load-more-text: #ffffff;/* Màu chữ nút XEM THÊM */
         }
 
+        /* --- Cấu trúc cơ bản - Không nên thay đổi nếu không cần thiết --- */
         body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding: 0; transition: 0.3s; }
         
         header { 
@@ -93,7 +114,6 @@
         .font-price { color: var(--vip-red); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
         .font-price span { text-transform: lowercase; }
 
-        /* PHẦN QUAN TRỌNG: Đã đổi background thành biến --vip-red để Linh tự chỉnh */
         .btn-download { 
             background: var(--btn-free-bg);
             color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
@@ -102,6 +122,7 @@
         }
         .btn-paid { background: var(--vip-red) !important; color: #fff !important; }
 
+        /* Hiệu ứng khi di chuột vào nút */
         .btn-download:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
