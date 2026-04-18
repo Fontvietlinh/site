@@ -1,237 +1,772 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* ============================================================
-           GIAO DIỆN 1: TRẮNG (MẶC ĐỊNH)
-           ============================================================ */
-        :root { 
-            --vip-gold: #F77F00;      /* 1. Nhãn PREMIUM trên ảnh */
-            --vip-price: #0ABAB5;     /* 2. Màu chữ GIÁ TIỀN */
-            --btn-paid-bg: #0ABAB5;   /* 3. Nền nút MUA NGAY */
-            --preview-bg: #ffffff;    /* 4. Nền ô chứa tên font (dưới ảnh) */
-            --preview-text: #202124;  /* 5. Chữ tên Font */
-            --bg: #ffffff;            /* 6. Nền toàn bộ website */
-            --nav-bg: #ffffff;        /* 7. Nền của thanh Menu ngang */
-            --nav-text: #0ABAB5;      /* 8. MÀU CHỮ "TẤT CẢ" & DANH MỤC */
-            --nav-external: #0ABAB5;  /* 9. MÀU CHỮ CÁC GÓI FONT (Gói 4500, Cập nhật) */
-            --nav-text-active: #F77F00;/* 10. MÀU CHỮ KHI ĐƯỢC CHỌN/ACTIVE */
-            --border: #dfe1e5;        /* 11. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #0aba88;   /* 12. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 13. Chữ trong nút TẢI NGAY */
-            --load-more-text: #0ABAB5;/* 14. Màu CHỮ & VIỀN nút XEM THÊM */
-            --bg-paper: url('images/bg-paper.jpg'); 
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-body: 'Be Vietnam Pro', sans-serif;
+      --font-display: 'Alfa Slab One', 'Cormorant Garamond', serif;
 
-        /* --- GIAO DIỆN 2: PAPER (GIẤY CŨ) --- */
-        [data-theme='paper'] {
-            --vip-gold: #F77F00;      /* 1. Nhãn PREMIUM trên ảnh */
-            --vip-price: #F77F00;     /* 2. Màu chữ GIÁ TIỀN */
-            --btn-paid-bg: #F77F00;   /* 3. Nền nút MUA NGAY */
-            --preview-bg: #FFEDCE;    /* 4. Nền ô chứa tên font (dưới ảnh) */
-            --preview-text: #F77F00;  /* 5. Chữ tên Font */
-            --bg: #EED9B9;            /* 6. Nền toàn bộ website */
-            --nav-bg: #132440;        /* 7. Nền của thanh Menu ngang */
-            --nav-text: #FFFFFF;      /* 8. MÀU CHỮ "TẤT CẢ" & DANH MỤC */
-            --nav-external: #F77F00;  /* 9. MÀU CHỮ CÁC GÓI FONT */
-            --nav-text-active: #F77F00;/* 10. MÀU CHỮ KHI ĐƯỢC CHỌN */
-            --border: #F77F00;        /* 11. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #E89A0C;   /* 12. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 13. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 14. Màu CHỮ & VIỀN nút XEM THÊM */
-        }
+      --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.82rem);
+      --text-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.98rem);
+      --text-base: clamp(1rem, 0.97rem + 0.2vw, 1.1rem);
+      --text-lg: clamp(1.15rem, 1.03rem + 0.45vw, 1.45rem);
+      --text-xl: clamp(1.8rem, 1.4rem + 1.2vw, 2.7rem);
 
-        /* --- GIAO DIỆN 3: ĐEN (DARK MODE) --- */
-        [data-theme='dark'] {
-            --vip-gold: #F77F00;      /* 1. Nhãn PREMIUM trên ảnh */
-            --vip-price: #F77F00;     /* 2. Màu chữ GIÁ TIỀN */
-            --btn-paid-bg: #0323a3;   /* 3. Nền nút MUA NGAY */
-            --preview-bg: #1e1e1e;    /* 4. Nền ô chứa tên font (dưới ảnh) */
-            --preview-text: #e4e6eb;  /* 5. Chữ tên Font */
-            --bg: #121212;            /* 6. Nền toàn bộ website */
-            --nav-bg: #1a1a1a;        /* 7. Nền của thanh Menu ngang */
-            --nav-text: #b0b3b8;      /* 8. MÀU CHỮ "TẤT CẢ" & DANH MỤC */
-            --nav-external: #0ABAB5;  /* 9. MÀU CHỮ CÁC GÓI FONT */
-            --nav-text-active: #F77F00;/* 10. MÀU CHỮ KHI ĐƯỢC CHỌN */
-            --border: #333333;        /* 11. Đường viền ô và khung tìm kiếm */
-            --btn-free-bg: #022859;   /* 12. Nền nút TẢI NGAY (Miễn phí) */
-            --btn-free-text: #ffffff; /* 13. Chữ trong nút TẢI NGAY */
-            --load-more-text: #ffffff;/* 14. Màu CHỮ & VIỀN nút XEM THÊM */
-        }
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
 
-        /* --- CẤU TRÚC GIAO DIỆN CỐ ĐỊNH --- */
-        body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--preview-text); margin: 0; padding: 0; transition: 0.3s; }
-        header { 
-            background-image: var(--bg-paper); background-size: cover; background-position: center;
-            padding: 12px 20px; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .header-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-img { height: 45px; width: auto; object-fit: contain; }
-        .logo-info { display: flex; flex-direction: column; }
-        .logo-text { font-size: 18px; font-weight: 800; color: #333; white-space: nowrap; line-height: 1.1; letter-spacing: 0.5px; }
-        .logo-slogan { font-size: 11px; font-style: italic; color: #555; margin-top: 3px; white-space: nowrap; }
-        .search-area { flex-grow: 1; display: flex; justify-content: center; margin: 0 15px; }
-        .search-container { width: 100%; max-width: 350px; display: flex; border: 1px solid var(--border); border-radius: 20px; padding: 6px 15px; background: rgba(255,255,255,0.8); }
-        .search-container input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; background: transparent; }
+      --radius-sm: 0.5rem;
+      --radius-md: 0.9rem;
+      --radius-lg: 1.2rem;
+      --radius-xl: 1.6rem;
+      --radius-full: 999px;
 
-        .theme-area { display: flex; gap: 10px; }
-        .theme-btn { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; transition: 0.2s; }
-        .btn-white { background: #ffffff; }
-        .btn-paper { background: #EED9B9; }
-        .btn-dark  { background: #242526; }
+      --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
 
-        @media (max-width: 600px) {
-            header { padding: 10px; }
-            .header-top { flex-wrap: wrap; }
-            .logo-area { flex: 1; }
-            .logo-img { height: 38px; }
-            .logo-text { font-size: 16px; }
-            .logo-slogan { font-size: 10px; }
-            .search-area { order: 3; width: 100%; margin: 10px 0 0 0; }
-            .search-container { max-width: 100%; }
-            .theme-area { order: 2; gap: 6px; }
-            .theme-btn { width: 16px; height: 16px; }
-        }
+      --bg-paper: none;
+      --color-bg: #f7f5f0;
+      --color-surface: rgba(255,255,255,0.72);
+      --color-surface-2: rgba(255,255,255,0.92);
+      --color-text: #191919;
+      --color-text-muted: #68645c;
+      --color-border: rgba(25,25,25,0.10);
+      --color-divider: rgba(25,25,25,0.08);
+      --color-primary: #111111;
+      --color-primary-hover: #2b2b2b;
+      --color-accent: #8a6a2f;
+      --color-accent-soft: rgba(138,106,47,0.12);
+      --color-nav: rgba(255,255,255,0.65);
+      --color-search: rgba(255,255,255,0.82);
+      --color-card-shadow: 0 18px 45px rgba(17,17,17,0.08);
+      --color-card-shadow-hover: 0 26px 70px rgba(17,17,17,0.14);
+      --btn-free-bg: #111111;
+      --btn-free-text: #ffffff;
+      --btn-paid-bg: #8a6a2f;
+      --btn-paid-text: #ffffff;
+      --price-color: #8a6a2f;
+      --badge-bg: #111111;
+      --badge-text: #ffffff;
+      --load-more-bg: transparent;
+      --load-more-text: #111111;
+      --logo-text: #111111;
+      --logo-subtext: #5f5a52;
+      --backdrop-blur: blur(18px);
+    }
 
-        nav { background: var(--nav-bg); padding: 12px; text-align: center; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; }
-        nav a { margin: 0 12px; text-decoration: none; color: var(--nav-text); font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        nav a:hover, nav a.active { color: var(--nav-text-active); }
-        .nav-external { color: var(--nav-external) !important; font-weight: 700; }
+    [data-theme='paper'] {
+      --color-bg: #efe3cf;
+      --color-surface: rgba(255,248,236,0.72);
+      --color-surface-2: rgba(255,246,231,0.92);
+      --color-text: #2c2117;
+      --color-text-muted: #73614f;
+      --color-border: rgba(69,48,28,0.14);
+      --color-divider: rgba(69,48,28,0.10);
+      --color-primary: #2f2217;
+      --color-primary-hover: #4c3826;
+      --color-accent: #7a4f1d;
+      --color-accent-soft: rgba(122,79,29,0.12);
+      --color-nav: rgba(58,39,24,0.88);
+      --color-search: rgba(255,248,237,0.76);
+      --color-card-shadow: 0 20px 50px rgba(61,41,23,0.10);
+      --color-card-shadow-hover: 0 32px 80px rgba(61,41,23,0.16);
+      --btn-free-bg: #2f2217;
+      --btn-free-text: #fff8ef;
+      --btn-paid-bg: #7a4f1d;
+      --btn-paid-text: #fff8ef;
+      --price-color: #7a4f1d;
+      --badge-bg: #2f2217;
+      --badge-text: #fff8ef;
+      --load-more-text: #2f2217;
+      --logo-text: #2f2217;
+      --logo-subtext: #6d5b49;
+      --bg-paper: radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 38%), linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+    }
 
-        .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 25px; max-width: 1300px; margin: 0 auto; }
-        .font-card { background: var(--preview-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; transition: 0.3s; backdrop-filter: blur(5px); }
-        .font-card:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .badge-vip { position: absolute; top: 12px; right: 12px; background: var(--vip-gold); color: #fff; padding: 5px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; z-index: 1; }
-        .font-img { width: 100%; height: 190px; object-fit: cover; background: #f8f9fa; border-bottom: 1px solid var(--border); }
-        .font-info { padding: 20px; text-align: center; background: var(--preview-bg); }
-        .font-title { font-weight: 600; font-size: 15px; color: var(--preview-text); margin-bottom: 5px; line-height: 1.4; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-        .font-price { color: var(--vip-price); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
-        
-        .btn-download { background: var(--btn-free-bg); color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none; transition: 0.3s ease; }
-        .btn-paid { background: var(--btn-paid-bg) !important; color: #fff !important; }
-        .btn-download:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.3); filter: brightness(1.1); }
-        
-        .load-more-container { text-align: center; padding: 50px; }
-        #load-more-btn { 
-            background: var(--nav-bg); 
-            color: var(--load-more-text); 
-            border: 2px solid var(--load-more-text); 
-            padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; 
-        }
-        #load-more-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-    </style>
+    [data-theme='dark'] {
+      --color-bg: #0b0b0b;
+      --color-surface: rgba(20,20,20,0.82);
+      --color-surface-2: rgba(26,26,26,0.94);
+      --color-text: #efede8;
+      --color-text-muted: #a9a39a;
+      --color-border: rgba(239,237,232,0.10);
+      --color-divider: rgba(239,237,232,0.08);
+      --color-primary: #f2eee6;
+      --color-primary-hover: #ffffff;
+      --color-accent: #c4a25a;
+      --color-accent-soft: rgba(196,162,90,0.12);
+      --color-nav: rgba(18,18,18,0.84);
+      --color-search: rgba(23,23,23,0.88);
+      --color-card-shadow: 0 20px 52px rgba(0,0,0,0.38);
+      --color-card-shadow-hover: 0 34px 90px rgba(0,0,0,0.52);
+      --btn-free-bg: #f2eee6;
+      --btn-free-text: #0b0b0b;
+      --btn-paid-bg: #c4a25a;
+      --btn-paid-text: #121212;
+      --price-color: #d5b676;
+      --badge-bg: #f2eee6;
+      --badge-text: #121212;
+      --load-more-text: #f2eee6;
+      --logo-text: #f2eee6;
+      --logo-subtext: #a9a39a;
+      --bg-paper: radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 40%);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at top right, var(--color-accent-soft), transparent 24%),
+        radial-gradient(circle at left center, rgba(255,255,255,0.05), transparent 24%),
+        var(--bg-paper),
+        var(--color-bg);
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    a, button, input {
+      font: inherit;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .site-shell {
+      width: min(1440px, calc(100% - 28px));
+      margin: 20px auto 32px;
+    }
+
+    header {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      margin-bottom: var(--space-4);
+    }
+
+    .header-panel {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: var(--space-5);
+      padding: 16px 18px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      border-radius: 24px;
+      box-shadow: var(--color-card-shadow);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .logo-mark {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      padding: 8px;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
+      flex: 0 0 auto;
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: var(--logo-text);
+      white-space: nowrap;
+    }
+
+    .logo-slogan {
+      font-size: var(--text-sm);
+      color: var(--logo-subtext);
+      white-space: nowrap;
+    }
+
+    .search-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .search-container {
+      width: min(100%, 460px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      background: var(--color-search);
+      border-radius: 999px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .search-container::before {
+      content: '⌕';
+      font-size: 16px;
+      color: var(--color-text-muted);
+      line-height: 1;
+    }
+
+    .search-container input {
+      width: 100%;
+      border: none;
+      outline: none;
+      color: var(--color-text);
+      background: transparent;
+      font-size: var(--text-sm);
+    }
+
+    .search-container input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .theme-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+    }
+
+    .theme-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.24);
+      cursor: pointer;
+      box-shadow: 0 0 0 3px transparent;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+    }
+
+    .theme-btn:hover { transform: scale(1.08); }
+    .theme-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-accent-soft); }
+    .btn-white { background: linear-gradient(135deg, #ffffff, #d9d4ca); }
+    .btn-paper { background: linear-gradient(135deg, #d5b892, #7a4f1d); }
+    .btn-dark { background: linear-gradient(135deg, #131313, #7a7a7a); }
+
+
+    .sort-btn {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--color-text-muted);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      white-space: nowrap;
+      margin-left: auto;
+      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .sort-btn:hover {
+      color: var(--color-text);
+      border-color: var(--color-border);
+      background: var(--color-surface);
+      transform: translateY(-1px);
+    }
+    .sort-btn.active {
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+      background: var(--color-accent-soft);
+    }
+    .sort-btn svg { flex: 0 0 auto; pointer-events: none; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 10px 8px 4px;
+      scrollbar-width: none;
+    }
+
+    nav::-webkit-scrollbar { display: none; }
+
+    nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--color-text-muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--color-text);
+      border-color: var(--color-border);
+      background: var(--color-surface);
+      transform: translateY(-1px);
+    }
+
+    .nav-external {
+      color: var(--color-accent) !important;
+    }
+
+    .font-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 24px;
+      padding: 22px 0 12px;
+    }
+
+    .font-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      box-shadow: var(--color-card-shadow);
+      transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .font-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.03));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .font-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--color-card-shadow-hover);
+      border-color: var(--color-accent-soft);
+    }
+
+    .font-card:hover::after {
+      opacity: 1;
+    }
+
+    .badge-vip {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      left: auto;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 13px 6px 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c9920a 0%, #f5c842 55%, #e8a800 100%);
+      color: #1a0f00;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(201,146,10,0.55), 0 1px 0 rgba(255,255,255,0.22) inset;
+      border: 1px solid rgba(255,220,80,0.45);
+    }
+    .badge-vip svg {
+      flex: 0 0 auto;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.18));
+    }
+
+    .media-wrap {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: var(--color-surface-2);
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .font-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms ease;
+    }
+
+    .font-card:hover .font-img {
+      transform: scale(1.03);
+      filter: saturate(1.03) contrast(1.02);
+    }
+
+    .font-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 18px 18px;
+      text-align: left;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
+    }
+
+    .font-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.2em;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.42;
+      color: var(--color-text);
+      letter-spacing: 0.01em;
+    }
+
+    .font-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .font-price {
+      color: var(--price-color);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      line-height: 1.4;
+    }
+
+    .font-price span {
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.14);
+    }
+
+    .btn-free {
+      background: var(--btn-free-bg);
+      color: var(--btn-free-text);
+    }
+
+    .btn-paid {
+      background: var(--btn-paid-bg);
+      color: var(--btn-paid-text);
+    }
+
+    .load-more-container {
+      text-align: center;
+      padding: 22px 0 50px;
+    }
+
+    #load-more-btn {
+      min-width: 220px;
+      min-height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      background: var(--load-more-bg);
+      color: var(--load-more-text);
+      padding: 12px 26px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+
+    #load-more-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-accent);
+      box-shadow: var(--color-card-shadow);
+    }
+
+    @media (max-width: 980px) {
+      .header-panel {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .search-area { justify-content: stretch; }
+      .search-container { width: 100%; max-width: 100%; }
+      .theme-area { justify-self: start; }
+    }
+
+    @media (max-width: 720px) {
+      .site-shell { width: min(100% - 18px, 100%); margin: 10px auto 24px; }
+      header { top: 8px; }
+      .header-panel { padding: 14px; border-radius: 22px; }
+      .logo-mark { width: 60px; height: 60px; border-radius: 18px; }
+      .logo-text { font-size: 1.25rem; white-space: normal; }
+      .logo-slogan { white-space: normal; }
+      .font-grid { gap: 18px; }
+      .font-card { border-radius: 24px; }
+      .font-info { padding: 18px; }
+      nav a { padding: 9px 14px; }
+    }
+  </style>
 </head>
 <body>
+  <div class="site-shell">
     <header>
-        <div class="header-top">
-            <div class="logo-area">
-                <img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH">
-                <div class="logo-info">
-                    <span class="logo-text">FONT VIỆT LINH</span>
-                    <span class="logo-slogan">Chữ Việt cho người Việt</span>
-                </div>
-            </div>
-            <div class="search-area">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
-                </div>
-            </div>
-            <div class="theme-area">
-                <div class="theme-btn btn-white" onclick="setTheme('white')"></div>
-                <div class="theme-btn btn-paper" onclick="setTheme('paper')"></div>
-                <div class="theme-btn btn-dark" onclick="setTheme('dark')"></div>
-            </div>
+      <div class="header-panel">
+        <div class="logo-area">
+          <div class="logo-mark">
+            <img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH">
+          </div>
+          <div class="logo-info">
+            <span class="logo-text">FONT VIỆT LINH</span>
+            <span class="logo-slogan">Chữ Việt cho người Việt</span>
+          </div>
         </div>
+
+        <div class="search-area">
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Tìm font, tên bài viết hoặc từ khóa..." onkeypress="handleSearch(event)">
+          </div>
+        </div>
+
+        <div class="theme-area" aria-label="Chọn giao diện">
+          <button class="theme-btn btn-white" onclick="setTheme('white')" aria-label="Giao diện trắng"></button>
+          <button class="theme-btn btn-paper" onclick="setTheme('paper')" aria-label="Giao diện giấy"></button>
+          <button class="theme-btn btn-dark" onclick="setTheme('dark')" aria-label="Giao diện tối"></button>
+        </div>
+      </div>
     </header>
 
     <nav id="category-nav">
-        <a onclick="loadByLabel('')" class="active">Tất cả</a>
-        <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
-        <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
-        <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
-        <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" class="nav-external">Gói 4500 font</a>
-        <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" class="nav-external">Gói Cập Nhật T1-T6</a>
-        <a href="https://www.facebook.com/FontVietLinh/" target="_blank">Liên hệ</a>
-        <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
+      <a onclick="loadByLabel('')" class="active">Tất cả</a>
+      <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
+      <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
+      <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" rel="noopener noreferrer" class="nav-external">Gói 4500 font</a>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
+      <a href="https://www.facebook.com/FontVietLinh/" target="_blank" rel="noopener noreferrer">Liên hệ</a>
+      <a href="https://zalo.me/0902922811" target="_blank" rel="noopener noreferrer">Zalo</a>
+      <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()" aria-label="Sắp xếp A-Z">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>
+        A → Z
+      </button>
     </nav>
-
     <div class="font-grid" id="font-container"></div>
-    <div class="load-more-container"><button id="load-more-btn" onclick="fetchPosts()">XEM THÊM FONT</button></div>
+    <div class="load-more-container"><button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button></div>
+  </div>
 
-    <script>
-        const blogId = "5243210247122196079";
-        let startIndex = 1;
-        const maxResults = 24;
-        let currentLabel = '';
-        let currentSearch = '';
+  <script>
+    const blogId = "5243210247122196079";
+    let startIndex = 1;
+    const maxResults = 24;
+    let currentLabel = '';
+    let currentSearch = '';
+    let totalLoaded = 0;
+    let sortAZ = false;
 
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('font-linh-theme', theme);
-        }
-        setTheme(localStorage.getItem('font-linh-theme') || 'paper');
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('font-linh-theme', theme);
+    }
+    setTheme(localStorage.getItem('font-linh-theme') || 'paper');
 
-        function fetchPosts() {
-            const script = document.createElement('script');
-            let url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
-            if (currentLabel) url = `https://www.blogger.com/feeds/${blogId}/posts/default/-/${currentLabel}?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
-            if (currentSearch) url += `&q=${encodeURIComponent(currentSearch)}`;
-            script.src = url; document.body.appendChild(script);
-        }
+    function fetchPosts() {
+      const script = document.createElement('script');
+      let url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
+      if (currentLabel) url = `https://www.blogger.com/feeds/${blogId}/posts/default/-/${currentLabel}?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
+      if (currentSearch) url += `&q=${encodeURIComponent(currentSearch)}`;
+      script.src = url;
+      document.body.appendChild(script);
+    }
 
-        function render(data) {
-            const container = document.getElementById('font-container');
-            if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            data.feed.entry.forEach(post => {
-                const title = post.title.$t;
-                const blogLink = post.link.find(l => l.rel === 'alternate').href;
-                const content = post.content.$t;
-                const labels = post.category ? post.category.map(c => c.term) : [];
-                let priceText = "";
-                let isPaid = false;
-                const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
-                if (priceMatch) {
-                    isPaid = true;
-                    priceText = "Phí Việt Hoá: <span>" + priceMatch[2].toLowerCase() + "</span>";
-                }
-                let downloadLink = "";
-                const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
-                const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
-                if (driveMatch) { downloadLink = driveMatch[0].replace(/&amp;/g, '&'); }
-                else if (bitlyMatch) { downloadLink = bitlyMatch[0]; }
-                const isVip = labels.some(l => l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP')) || isPaid;
-                
-                let finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink ? downloadLink : blogLink);
-                
-                const btnTxt = isVip ? "Mua ngay" : "Tải ngay";
-                const btnCls = isVip ? "btn-paid" : "btn-free";
-                let img = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
-                if (content.includes('<img')) {
-                    const m = content.match(/src="([^"]+)"/);
-                    if (m) img = m[1];
-                }
-                container.innerHTML += `<div class="font-card">${isVip ? '<div class="badge-vip">PREMIUM</div>' : ''}<img src="${img}" class="font-img" alt="${title}" loading="lazy"><div class="font-info"><div class="font-title">${title}</div><div class="font-price">${priceText ? priceText : 'Miễn phí'}</div><a href="${finalLink}" target="_blank" class="btn-download ${btnCls}">${btnTxt}</a></div></div>`;
-            });
-            startIndex += maxResults;
+    function render(data) {
+      const container = document.getElementById('font-container');
+      if (!data.feed.entry) {
+        document.getElementById('load-more-btn').innerText = "Hết dữ liệu";
+        return;
+      }
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      data.feed.entry.forEach(function(post) {
+        const title = post.title.$t;
+        const blogLink = post.link.find(function(l){ return l.rel === 'alternate'; }).href;
+        const content = post.content.$t;
+        const labels = post.category ? post.category.map(function(c){ return c.term; }) : [];
+
+        let priceText = "";
+        let isPaid = false;
+        const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
+        if (priceMatch) {
+          isPaid = true;
+          priceText = "Phí Việt Hoá: " + priceMatch[2].toLowerCase();
         }
 
-        function loadByLabel(label) {
-            currentLabel = label; currentSearch = '';
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            if (event && event.target.tagName === 'A') event.target.classList.add('active');
-            resetAndFetch();
+        let downloadLink = "";
+        const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
+        const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
+        if (driveMatch) downloadLink = driveMatch[0].replace(/&amp;/g, '&');
+        else if (bitlyMatch) downloadLink = bitlyMatch[0];
+
+        const isVip = labels.some(function(l){
+          return l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP');
+        }) || isPaid;
+
+        const finalLink = isVip
+          ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh")
+          : (downloadLink || blogLink);
+
+        let imgSrc = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
+        if (content.includes('<img')) {
+          const m = content.match(/src="([^"]+)"/);
+          if (m) imgSrc = m[1];
         }
 
-        function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; resetAndFetch(); } }
-        function resetAndFetch() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; document.getElementById('load-more-btn').innerText = "XEM THÊM FONT"; fetchPosts(); }
-        fetchPosts();
-    </script>
+        // Build card using createElement so data-order is reliable
+        const card = document.createElement('div');
+        card.className = 'font-card';
+        card.dataset.order = totalLoaded;
+        totalLoaded++;
+
+        const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
+
+        card.innerHTML = `
+          ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
+          <div class="media-wrap">
+            <img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy">
+          </div>
+          <div class="font-info">
+            <div class="font-title">${title}</div>
+            <div class="font-meta-row">
+              <div class="font-price">${priceText || 'Miễn phí'}</div>
+            </div>
+            <a href="${finalLink}" target="_blank" rel="noopener noreferrer"
+               class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
+              ${isVip ? 'Mua ngay' : 'Tải ngay'}
+            </a>
+          </div>`;
+
+        container.appendChild(card);
+      });
+
+      startIndex += maxResults;
+      if (sortAZ) applySortToDOM();
+    }
+
+    function toggleSort() {
+      sortAZ = !sortAZ;
+      const btn = document.getElementById('sort-az-btn');
+      const iconSVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>`;
+      if (sortAZ) {
+        btn.classList.add('active');
+        btn.innerHTML = iconSVG + ' A → Z ✓';
+      } else {
+        btn.classList.remove('active');
+        btn.innerHTML = iconSVG + ' A → Z';
+      }
+      applySortToDOM();
+    }
+
+    function applySortToDOM() {
+      const container = document.getElementById('font-container');
+      const cards = Array.from(container.children);
+      if (sortAZ) {
+        cards.sort(function(a, b) {
+          const ta = (a.querySelector('.font-title') || {}).textContent || '';
+          const tb = (b.querySelector('.font-title') || {}).textContent || '';
+          return ta.trim().localeCompare(tb.trim(), 'vi', { sensitivity: 'base' });
+        });
+      } else {
+        cards.sort(function(a, b) {
+          return parseInt(a.dataset.order || 0) - parseInt(b.dataset.order || 0);
+        });
+      }
+      cards.forEach(function(c) { container.appendChild(c); });
+    }
+
+    function loadByLabel(label) {
+      currentLabel = label;
+      currentSearch = '';
+      document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('active'); });
+      if (event && event.target.tagName === 'A') event.target.classList.add('active');
+      resetAndFetch();
+    }
+
+    function handleSearch(e) {
+      if (e.key === 'Enter') {
+        currentSearch = document.getElementById('searchInput').value;
+        currentLabel = '';
+        resetAndFetch();
+      }
+    }
+
+    function resetAndFetch() {
+      document.getElementById('font-container').innerHTML = '';
+      startIndex = 1;
+      totalLoaded = 0;
+      document.getElementById('load-more-btn').innerText = "Xem thêm font";
+      fetchPosts();
+    }
+
+    fetchPosts();
+  </script>
 </body>
 </html>
