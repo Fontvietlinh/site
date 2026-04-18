@@ -12,11 +12,10 @@
             --bg: #ffffff; --card-bg: #ffffff; --text-main: #202124; --text-sub: #5f6368; --border: #dfe1e5; --nav-bg: #ffffff;
             --btn-free-bg: #547792;
             --btn-free-text: #ffffff;
-            --load-more-text: #F77F00; /* Màu chữ xem thêm giao diện trắng */
+            --load-more-text: #F77F00;
             --bg-paper: url('images/bg-paper.jpg'); 
         }
 
-        /* GIAO DIỆN PAPER */
         [data-theme='paper'] {
             --vip-gold: #F77F00;
             --vip-red: #F77F00;
@@ -32,7 +31,6 @@
             background-image: var(--bg-paper); background-attachment: fixed;
         }
 
-        /* GIAO DIỆN ĐEN */
         [data-theme='dark'] {
             --bg: #121212; --card-bg: #1e1e1e; --text-main: #e4e6eb; --text-sub: #b0b3b8; --border: #333; --nav-bg: #1a1a1a;
             --vip-red: #F77F00; 
@@ -95,15 +93,25 @@
         .font-price { color: var(--vip-red); font-weight: 700; font-size: 13px; margin-bottom: 15px; display: block; }
         .font-price span { text-transform: lowercase; }
 
+        /* ĐỊNH NGHĨA NÚT CHUNG */
         .btn-download { 
             background: var(--btn-free-bg);
             color: var(--btn-free-text); padding: 10px 20px; border-radius: 25px; text-decoration: none; 
             font-size: 13px; font-weight: 700; display: inline-block; width: 85%; border: none;
+            transition: 0.3s ease; /* Hiệu ứng mượt */
         }
         .btn-paid { background: #F77F00 !important; color: #fff !important; }
 
+        /* HIỆU ỨNG PHÓNG TO KHI RÊ CHUỘT (HOVER) */
+        .btn-download:hover {
+            transform: scale(1.05); /* Phóng to 5% */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Đổ bóng mạnh hơn */
+            filter: brightness(1.1); /* Sáng hơn một chút */
+        }
+
         .load-more-container { text-align: center; padding: 50px; }
-        #load-more-btn { background: var(--nav-bg); color: var(--load-more-text); border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; }
+        #load-more-btn { background: var(--nav-bg); color: var(--load-more-text); border: 2px solid var(--vip-gold); padding: 12px 45px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        #load-more-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
