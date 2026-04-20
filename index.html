@@ -8,8 +8,6 @@
   <meta name="theme-color" content="#8a6a2f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="FontVietLinh">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
@@ -151,7 +149,10 @@
       transition: background-color var(--transition), color var(--transition);
     }
 
-    a, button, input { font: inherit; }
+    a, button, input {
+      font: inherit;
+    }
+
     img { display: block; max-width: 100%; }
 
     .site-shell {
@@ -263,6 +264,10 @@
       font-size: var(--text-sm);
     }
 
+    .search-container input::placeholder {
+      color: var(--color-text-muted);
+    }
+
     .theme-area {
       display: flex;
       align-items: center;
@@ -279,12 +284,16 @@
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.24);
       cursor: pointer;
-      transition: transform var(--transition);
+      box-shadow: 0 0 0 3px transparent;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
     }
 
+    .theme-btn:hover { transform: scale(1.08); }
+    .theme-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-accent-soft); }
     .btn-white { background: linear-gradient(135deg, #ffffff, #d9d4ca); }
     .btn-paper { background: linear-gradient(135deg, #d5b892, #7a4f1d); }
     .btn-dark { background: linear-gradient(135deg, #131313, #7a7a7a); }
+
 
     .sort-btn {
       flex: 0 0 auto;
@@ -296,18 +305,27 @@
       border: 1px solid transparent;
       background: transparent;
       color: var(--color-text-muted);
+      font-family: var(--font-body);
       font-size: var(--text-sm);
       font-weight: 700;
+      letter-spacing: 0.01em;
       cursor: pointer;
+      white-space: nowrap;
       margin-left: auto;
-      transition: all var(--transition);
+      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
     }
-
+    .sort-btn:hover {
+      color: var(--color-text);
+      border-color: var(--color-border);
+      background: var(--color-surface);
+      transform: translateY(-1px);
+    }
     .sort-btn.active {
       color: var(--color-accent);
       border-color: var(--color-accent);
       background: var(--color-accent-soft);
     }
+    .sort-btn svg { flex: 0 0 auto; pointer-events: none; }
 
     nav {
       display: flex;
@@ -317,6 +335,7 @@
       padding: 10px 8px 4px;
       scrollbar-width: none;
     }
+
     nav::-webkit-scrollbar { display: none; }
 
     nav a {
@@ -325,16 +344,25 @@
       color: var(--color-text-muted);
       padding: 10px 16px;
       border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
       font-size: var(--text-sm);
       font-weight: 600;
-      transition: all var(--transition);
+      letter-spacing: 0.01em;
+      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
       cursor: pointer;
     }
 
-    nav a:hover, nav a.active {
+    nav a:hover,
+    nav a.active {
       color: var(--color-text);
+      border-color: var(--color-border);
       background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      transform: translateY(-1px);
+    }
+
+    .nav-external {
+      color: var(--color-accent) !important;
     }
 
     .font-grid {
@@ -351,33 +379,58 @@
       border: 1px solid var(--color-border);
       background: var(--color-surface);
       backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
       box-shadow: var(--color-card-shadow);
-      transition: all 260ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .font-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.03));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition);
     }
 
     .font-card:hover {
       transform: translateY(-8px);
       box-shadow: var(--color-card-shadow-hover);
+      border-color: var(--color-accent-soft);
+    }
+
+    .font-card:hover::after {
+      opacity: 1;
     }
 
     .badge-vip {
       position: absolute;
       top: 12px;
       right: 12px;
+      left: auto;
       z-index: 2;
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 6px 13px;
+      padding: 6px 13px 6px 9px;
       border-radius: 999px;
       background: linear-gradient(135deg, #c9920a 0%, #f5c842 55%, #e8a800 100%);
       color: #1a0f00;
       font-size: 11px;
       font-weight: 900;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(201,146,10,0.55), 0 1px 0 rgba(255,255,255,0.22) inset;
+      border: 1px solid rgba(255,220,80,0.45);
+    }
+    .badge-vip svg {
+      flex: 0 0 auto;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.18));
     }
 
     .media-wrap {
+      position: relative;
       aspect-ratio: 16/10;
       overflow: hidden;
       background: var(--color-surface-2);
@@ -388,48 +441,137 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 500ms ease;
+      transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms ease;
+    }
+
+    .font-card:hover .font-img {
+      transform: scale(1.03);
+      filter: saturate(1.03) contrast(1.02);
     }
 
     .font-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
       padding: 16px 18px 18px;
+      text-align: left;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
     }
 
     .font-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.2em;
+      font-size: 1rem;
       font-weight: 700;
+      line-height: 1.42;
       color: var(--color-text);
-      min-height: 2.8em;
+      letter-spacing: 0.01em;
+    }
+
+    .font-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .font-price {
+      color: var(--price-color);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      line-height: 1.4;
+    }
+
+    .font-price span {
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .btn-download {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       min-height: 48px;
+      padding: 12px 18px;
       border-radius: 16px;
       text-decoration: none;
+      border: 1px solid transparent;
+      font-size: var(--text-sm);
       font-weight: 700;
-      margin-top: 12px;
-      transition: all var(--transition);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
     }
 
-    .btn-free { background: var(--btn-free-bg); color: var(--btn-free-text); }
-    .btn-paid { background: var(--btn-paid-bg); color: var(--btn-paid-text); }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.14);
+    }
 
-    .load-more-container { text-align: center; padding: 50px 0; }
+    .btn-free {
+      background: var(--btn-free-bg);
+      color: var(--btn-free-text);
+    }
+
+    .btn-paid {
+      background: var(--btn-paid-bg);
+      color: var(--btn-paid-text);
+    }
+
+    .load-more-container {
+      text-align: center;
+      padding: 22px 0 50px;
+    }
+
     #load-more-btn {
       min-width: 220px;
-      padding: 12px 26px;
+      min-height: 52px;
       border-radius: 999px;
       border: 1px solid var(--color-border);
-      background: transparent;
+      background: var(--load-more-bg);
+      color: var(--load-more-text);
+      padding: 12px 26px;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
+      backdrop-filter: var(--backdrop-blur);
+      -webkit-backdrop-filter: var(--backdrop-blur);
+      transition: transform var(--transition), background var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+
+    #load-more-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-accent);
+      box-shadow: var(--color-card-shadow);
     }
 
     @media (max-width: 980px) {
-      .header-panel { grid-template-columns: 1fr; }
+      .header-panel {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .search-area { justify-content: stretch; }
+      .search-container { width: 100%; max-width: 100%; }
+      .theme-area { justify-self: start; }
+    }
+
+    @media (max-width: 720px) {
+      .site-shell { width: min(100% - 18px, 100%); margin: 10px auto 24px; }
+      header { top: 8px; }
+      .header-panel { padding: 14px; border-radius: 22px; }
+      .logo-mark { width: 60px; height: 60px; border-radius: 18px; }
+      .logo-text { font-size: 1.25rem; white-space: normal; }
+      .logo-slogan { white-space: normal; }
+      .font-grid { gap: 18px; }
+      .font-card { border-radius: 24px; }
+      .font-info { padding: 18px; }
+      nav a { padding: 9px 14px; }
     }
   </style>
 </head>
@@ -449,14 +591,14 @@
 
         <div class="search-area">
           <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
+            <input type="text" id="searchInput" placeholder="Tìm font, tên bài viết hoặc từ khóa..." onkeypress="handleSearch(event)">
           </div>
         </div>
 
-        <div class="theme-area">
-          <button class="theme-btn btn-white" onclick="setTheme('white')"></button>
-          <button class="theme-btn btn-paper" onclick="setTheme('paper')"></button>
-          <button class="theme-btn btn-dark" onclick="setTheme('dark')"></button>
+        <div class="theme-area" aria-label="Chọn giao diện">
+          <button class="theme-btn btn-white" onclick="setTheme('white')" aria-label="Giao diện trắng"></button>
+          <button class="theme-btn btn-paper" onclick="setTheme('paper')" aria-label="Giao diện giấy"></button>
+          <button class="theme-btn btn-dark" onclick="setTheme('dark')" aria-label="Giao diện tối"></button>
         </div>
       </div>
     </header>
@@ -466,8 +608,14 @@
       <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
       <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
       <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
-      <a onclick="openContact()">Liên hệ</a>
-      <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()">A → Z</button>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" rel="noopener noreferrer" class="nav-external">Gói 4500 font</a>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
+      <a onclick="openContact()" style="cursor:pointer">Liên hệ</a>
+      <a href="https://zalo.me/0902922811" target="_blank" rel="noopener noreferrer">Zalo</a>
+      <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()" aria-label="Sắp xếp A-Z">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>
+        A → Z
+      </button>
     </nav>
     <div class="font-grid" id="font-container"></div>
     <div class="load-more-container"><button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button></div>
@@ -507,45 +655,103 @@
 
       data.feed.entry.forEach(function(post) {
         const title = post.title.$t;
-        const blogLink = post.link.find(l => l.rel === 'alternate').href;
+        const blogLink = post.link.find(function(l){ return l.rel === 'alternate'; }).href;
         const content = post.content.$t;
-        const labels = post.category ? post.category.map(c => c.term) : [];
+        const labels = post.category ? post.category.map(function(c){ return c.term; }) : [];
 
         let priceText = "";
         let isPaid = false;
         const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
-        if (priceMatch) { isPaid = true; priceText = "Phí Việt Hoá: " + priceMatch[2]; }
+        if (priceMatch) {
+          isPaid = true;
+          priceText = "Phí Việt Hoá: " + priceMatch[2].toLowerCase();
+        }
 
         let downloadLink = "";
         const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
+        const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
         if (driveMatch) downloadLink = driveMatch[0].replace(/&amp;/g, '&');
+        else if (bitlyMatch) downloadLink = bitlyMatch[0];
 
-        const isVip = labels.some(l => l.includes('VIP') || l === 'FontTraPhi') || isPaid;
-        const finalLink = isVip ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh") : (downloadLink || blogLink);
+        const isVip = labels.some(function(l){
+          return l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP');
+        }) || isPaid;
+
+        const finalLink = isVip
+          ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh")
+          : (downloadLink || blogLink);
 
         let imgSrc = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
-        const m = content.match(/src="([^"]+)"/);
-        if (m) imgSrc = m[1];
+        if (content.includes('<img')) {
+          const m = content.match(/src="([^"]+)"/);
+          if (m) imgSrc = m[1];
+        }
 
         const card = document.createElement('div');
         card.className = 'font-card';
-        card.dataset.order = totalLoaded++;
+        card.dataset.order = totalLoaded;
+        totalLoaded++;
+
+        const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
+
         card.innerHTML = `
-          ${isVip ? `<div class="badge-vip">VIP</div>` : ''}
-          <div class="media-wrap"><img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy"></div>
+          ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
+          <div class="media-wrap">
+            <img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy">
+          </div>
           <div class="font-info">
             <div class="font-title">${title}</div>
-            <div class="font-price" style="color:var(--price-color); font-weight:700; font-size:14px; margin-top:8px">${priceText || 'Miễn phí'}</div>
-            <a href="${finalLink}" target="_blank" class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">${isVip ? 'Mua ngay' : 'Tải ngay'}</a>
+            <div class="font-meta-row">
+              <div class="font-price">${priceText || 'Miễn phí'}</div>
+            </div>
+            <a href="${finalLink}" target="_blank" rel="noopener noreferrer"
+               class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
+              ${isVip ? 'Mua ngay' : 'Tải ngay'}
+            </a>
           </div>`;
+
         container.appendChild(card);
       });
+
       startIndex += maxResults;
+      if (sortAZ) applySortToDOM();
+    }
+
+    function toggleSort() {
+      sortAZ = !sortAZ;
+      const btn = document.getElementById('sort-az-btn');
+      const iconSVG = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>`;
+      if (sortAZ) {
+        btn.classList.add('active');
+        btn.innerHTML = iconSVG + ' A → Z ✓';
+      } else {
+        btn.classList.remove('active');
+        btn.innerHTML = iconSVG + ' A → Z';
+      }
+      applySortToDOM();
+    }
+
+    function applySortToDOM() {
+      const container = document.getElementById('font-container');
+      const cards = Array.from(container.children);
+      if (sortAZ) {
+        cards.sort(function(a, b) {
+          const ta = (a.querySelector('.font-title') || {}).textContent || '';
+          const tb = (b.querySelector('.font-title') || {}).textContent || '';
+          return ta.trim().localeCompare(tb.trim(), 'vi', { sensitivity: 'base' });
+        });
+      } else {
+        cards.sort(function(a, b) {
+          return parseInt(a.dataset.order || 0) - parseInt(b.dataset.order || 0);
+        });
+      }
+      cards.forEach(function(c) { container.appendChild(c); });
     }
 
     function loadByLabel(label) {
-      currentLabel = label; currentSearch = '';
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      currentLabel = label;
+      currentSearch = '';
+      document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('active'); });
       if (event && event.target.tagName === 'A') event.target.classList.add('active');
       resetAndFetch();
     }
@@ -553,26 +759,31 @@
     function handleSearch(e) {
       if (e.key === 'Enter') {
         currentSearch = document.getElementById('searchInput').value;
-        currentLabel = ''; resetAndFetch();
+        currentLabel = '';
+        resetAndFetch();
       }
     }
 
     function resetAndFetch() {
       document.getElementById('font-container').innerHTML = '';
-      startIndex = 1; totalLoaded = 0; fetchPosts();
+      startIndex = 1;
+      totalLoaded = 0;
+      document.getElementById('load-more-btn').innerText = "Xem thêm font";
+      fetchPosts();
     }
 
     function openContact() {
-      const url = /Android|iPhone/i.test(navigator.userAgent) ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh";
-      window.open(url, '_blank');
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const url = isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh";
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
-    // --- ĐĂNG KÝ SERVICE WORKER (BỔ SUNG) ---
+    // === ĐĂNG KÝ SERVICE WORKER CHO APP (PWA) ===
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      window.addEventListener('load', function() {
         navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('PWA Ready!', reg))
-          .catch(err => console.log('PWA Error', err));
+          .then(function(reg) { console.log('PWA Ready!'); })
+          .catch(function(err) { console.log('PWA Error', err); });
       });
     }
 
