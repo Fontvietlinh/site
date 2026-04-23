@@ -3,6 +3,7 @@
 <head>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
+  
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8a6a2f">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,7 +18,9 @@
     :root {
       --font-body: 'Be Vietnam Pro', sans-serif;
       --font-display: 'Alfa Slab One', 'Cormorant Garamond', serif;
+
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+
       --color-bg: #f7f5f0;
       --color-surface: rgba(255,255,255,0.72);
       --color-surface-2: rgba(255,255,255,0.92);
@@ -26,13 +29,16 @@
       --color-border: rgba(25,25,25,0.10);
       --color-divider: rgba(25,25,25,0.08);
       --color-accent: #8a6a2f;
-      --price-color: #8a6a2f;
+      --color-nav: rgba(255,255,255,0.65);
+      --color-search: rgba(255,255,255,0.82);
+      --color-card-shadow: 0 18px 45px rgba(17,17,17,0.08);
+      --color-card-shadow-hover: 0 26px 70px rgba(17,17,17,0.14);
       --btn-free-bg: #111111;
       --btn-free-text: #ffffff;
       --btn-paid-bg: #8a6a2f;
       --btn-paid-text: #ffffff;
+      --price-color: #8a6a2f;
       --backdrop-blur: blur(18px);
-      --color-card-shadow: 0 18px 45px rgba(17,17,17,0.08);
     }
 
     [data-theme='paper'] {
@@ -43,9 +49,9 @@
       --color-text-muted: #73614f;
       --color-border: rgba(69,48,28,0.14);
       --color-accent: #7a4f1d;
-      --price-color: #7a4f1d;
       --btn-free-bg: #2f2217;
       --btn-paid-bg: #7a4f1d;
+      --price-color: #7a4f1d;
     }
 
     [data-theme='dark'] {
@@ -56,85 +62,139 @@
       --color-text-muted: #a9a39a;
       --color-border: rgba(239,237,232,0.10);
       --color-accent: #c4a25a;
-      --price-color: #d5b676;
       --btn-free-bg: #f2eee6;
       --btn-free-text: #0b0b0b;
       --btn-paid-bg: #c4a25a;
       --btn-paid-text: #121212;
+      --price-color: #d5b676;
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0; min-height: 100vh;
+      margin: 0;
+      min-height: 100vh;
       font-family: var(--font-body);
       color: var(--color-text);
-      background-color: var(--color-bg);
+      background: var(--color-bg);
       transition: background-color var(--transition), color var(--transition);
     }
 
-    .site-shell { width: min(1440px, calc(100% - 28px)); margin: 20px auto; }
+    a, button, input { font: inherit; }
+    img { display: block; max-width: 100%; }
 
-    header { position: sticky; top: 12px; z-index: 100; margin-bottom: 1rem; }
+    .site-shell {
+      width: min(1440px, calc(100% - 28px));
+      margin: 20px auto 32px;
+    }
+
+    header {
+      position: sticky; top: 12px; z-index: 100; margin-bottom: 1rem;
+    }
+
     .header-panel {
       display: grid; grid-template-columns: auto 1fr auto;
       align-items: center; gap: 1.25rem; padding: 16px 18px;
-      border: 1px solid var(--color-border); background: var(--color-surface);
-      backdrop-filter: var(--backdrop-blur); border-radius: 24px; box-shadow: var(--color-card-shadow);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      backdrop-filter: var(--backdrop-blur);
+      border-radius: 24px;
+      box-shadow: var(--color-card-shadow);
     }
 
     .logo-area { display: flex; align-items: center; gap: 14px; }
-    .logo-mark { width: 72px; height: 72px; border-radius: 22px; padding: 8px; background: var(--color-surface-2); border: 1px solid var(--color-border); }
+    .logo-mark { width: 72px; height: 72px; border-radius: 22px; padding: 8px; background: var(--color-surface-2); border: 1px solid var(--color-border); flex: 0 0 auto; }
     .logo-img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-info { display: flex; flex-direction: column; gap: 2px; }
     .logo-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); }
+    .logo-slogan { font-size: 0.85rem; color: var(--color-text-muted); }
 
-    .search-container { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--color-border); background: rgba(255,255,255,0.1); border-radius: 999px; }
+    .search-area { display: flex; align-items: center; justify-content: center; }
+    .search-container {
+      width: 100%; max-width: 460px;
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border: 1px solid var(--color-border);
+      background: rgba(255,255,255,0.1); border-radius: 999px;
+    }
     .search-container input { border: none; background: transparent; color: inherit; width: 100%; outline: none; }
 
     .theme-area { display: flex; gap: 8px; }
-    .theme-btn { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 1px solid var(--color-border); }
-    .btn-white { background: #fff; } .btn-paper { background: #d5b892; } .btn-dark { background: #131313; }
+    .theme-btn { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(0,0,0,0.2); transition: transform 0.2s; }
+    .theme-btn:hover { transform: scale(1.1); }
+    .btn-white { background: #ffffff; }
+    .btn-paper { background: #d5b892; }
+    .btn-dark { background: #131313; }
 
-    nav { display: flex; gap: 10px; padding: 10px 0; overflow-x: auto; }
-    nav a { padding: 8px 16px; border-radius: 999px; text-decoration: none; color: var(--color-text-muted); font-weight: 600; cursor: pointer; font-size: 0.9rem; }
-    nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+    nav { display: flex; gap: 10px; padding: 10px 8px; overflow-x: auto; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { flex: 0 0 auto; text-decoration: none; color: var(--color-text-muted); padding: 8px 16px; border-radius: 999px; font-weight: 600; transition: all 0.2s; cursor: pointer; }
+    nav a:hover, nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
 
-    .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-    .font-card { background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: all var(--transition); position: relative; }
-    .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
-
-    /* FIX: Đảm bảo Icon VIP hiển thị rõ ràng */
-    .badge-vip { 
-      position: absolute; top: 15px; right: 15px; z-index: 10; 
-      background: linear-gradient(135deg, #c9920a, #f5c842); 
-      color: #1a0f00; font-size: 11px; font-weight: 900; 
-      padding: 5px 12px; border-radius: 999px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    .font-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 24px; padding: 22px 0;
     }
 
-    .media-wrap { aspect-ratio: 16/10; overflow: hidden; background: #eee; border-bottom: 1px solid var(--color-divider); }
-    .font-img { width: 100%; height: 100%; object-fit: cover; }
+    .font-card {
+      position: relative;
+      background: var(--color-surface);
+      border-radius: 28px;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .font-card:hover { transform: translateY(-5px); box-shadow: var(--color-card-shadow-hover); }
 
-    .font-info { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-    .font-title { font-weight: 700; font-size: 1.1rem; min-height: 2.8em; line-height: 1.4; }
-    
-    .font-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
-    .font-price { color: var(--price-color); font-weight: 700; font-size: 1rem; }
+    /* CSS CHO HUY HIỆU VIP VỚI CROWN */
+    .badge-vip {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 6px 13px 6px 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c9920a 0%, #f5c842 55%, #e8a800 100%);
+      color: #1a0f00; font-size: 11px; font-weight: 900;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(201,146,10,0.55), 0 1px 0 rgba(255,255,255,0.22) inset;
+      border: 1px solid rgba(255,220,80,0.45);
+    }
+    .badge-vip svg { flex: 0 0 auto; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.18)); }
+
+    .media-wrap { aspect-ratio: 16/10; overflow: hidden; background: var(--color-surface-2); border-bottom: 1px solid var(--color-divider); }
+    .font-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--transition); }
+    .font-card:hover .font-img { transform: scale(1.03); }
+
+    .font-info { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 4px; }
+    .font-title {
+      font-size: 1rem; font-weight: 700; line-height: 1.42; color: var(--color-text);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.84em;
+    }
+
+    .font-meta-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .font-price { color: var(--price-color); font-weight: 700; font-size: 0.95rem; }
     
     .font-count {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--color-text-muted);
-      background: var(--color-divider);
-      padding: 4px 12px;
-      border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+      color: var(--color-text-muted); background: var(--color-divider);
+      padding: 4px 12px; border-radius: 8px;
     }
 
-    .btn-download { display: block; width: 100%; padding: 14px; text-align: center; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.2s; }
-    .btn-download:hover { transform: scale(1.02); }
+    .btn-download {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; min-height: 48px; padding: 12px 18px;
+      border-radius: 16px; text-decoration: none; font-weight: 700;
+      text-transform: uppercase; transition: all var(--transition);
+    }
+    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.14); }
     .btn-free { background: var(--btn-free-bg); color: var(--btn-free-text); }
     .btn-paid { background: var(--btn-paid-bg); color: var(--btn-paid-text); }
 
-    #load-more-btn { display: block; margin: 30px auto; padding: 12px 40px; border-radius: 999px; border: 1px solid var(--color-border); background: transparent; color: inherit; font-weight: 700; cursor: pointer; }
+    .load-more-container { text-align: center; padding: 22px 0 50px; }
+    #load-more-btn {
+      min-width: 220px; padding: 12px 26px; border-radius: 999px;
+      border: 1px solid var(--color-border); background: transparent; color: inherit;
+      font-weight: 700; text-transform: uppercase; cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -142,14 +202,21 @@
     <header>
       <div class="header-panel">
         <div class="logo-area">
-          <div class="logo-mark"><img src="images/logo.png" class="logo-img" alt="Logo"></div>
-          <div class="logo-info"><span class="logo-text">FONT VIỆT LINH</span></div>
+          <div class="logo-mark"><img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH"></div>
+          <div class="logo-info">
+            <span class="logo-text">FONT VIỆT LINH</span>
+            <span class="logo-slogan">Chữ Việt cho người Việt</span>
+          </div>
         </div>
-        <div class="search-area"><div class="search-container"><input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)"></div></div>
+        <div class="search-area">
+          <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)">
+          </div>
+        </div>
         <div class="theme-area">
-          <button class="theme-btn btn-white" onclick="setTheme('white')"></button>
-          <button class="theme-btn btn-paper" onclick="setTheme('paper')"></button>
-          <button class="theme-btn btn-dark" onclick="setTheme('dark')"></button>
+          <button class="theme-btn btn-white" onclick="setTheme('white')" aria-label="Giao diện trắng"></button>
+          <button class="theme-btn btn-paper" onclick="setTheme('paper')" aria-label="Giao diện giấy"></button>
+          <button class="theme-btn btn-dark" onclick="setTheme('dark')" aria-label="Giao diện tối"></button>
         </div>
       </div>
     </header>
@@ -158,32 +225,35 @@
       <a onclick="loadByLabel('')" class="active">Tất cả</a>
       <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
       <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
-      <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
     </nav>
 
     <div class="font-grid" id="font-container"></div>
-    <button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button>
+    <div class="load-more-container"><button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button></div>
   </div>
 
   <script>
     const blogId = "5243210247122196079";
-    let startIndex = 1, maxResults = 24, currentLabel = '', currentSearch = '', totalLoaded = 0;
+    let startIndex = 1, maxResults = 24, currentLabel = '', currentSearch = '';
 
-    function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('f-theme', t); }
-    setTheme(localStorage.getItem('f-theme') || 'paper');
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('font-linh-theme', theme);
+    }
+    setTheme(localStorage.getItem('font-linh-theme') || 'paper');
 
     function fetchPosts() {
-      const s = document.createElement('script');
+      const script = document.createElement('script');
       let url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
-      if (currentLabel) url = `https://www.blogger.com/feeds/${blogId}/posts/default/-/${currentLabel}?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
+      if (currentLabel) url += `/-/${currentLabel}`;
       if (currentSearch) url += `&q=${encodeURIComponent(currentSearch)}`;
-      s.src = url; document.body.appendChild(s);
+      script.src = url; document.body.appendChild(script);
     }
 
     function render(data) {
       const container = document.getElementById('font-container');
       if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
       data.feed.entry.forEach(post => {
         const title = post.title.$t;
@@ -191,50 +261,50 @@
         const content = post.content.$t;
         const labels = post.category ? post.category.map(c => c.term) : [];
 
-        // Kiểm tra nguồn gốc thiết kế
         const isVietLinhDesign = title.toLowerCase().includes("việt linh");
 
-        // Xử lý giá tiền và nhãn
-        let price = "Miễn phí", isPaid = false;
+        let priceText = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
         if (pMatch) { 
           isPaid = true;
           const priceValue = pMatch[2].toLowerCase();
-          price = isVietLinhDesign ? ("Mua font: " + priceValue) : ("Phí Việt hoá: " + priceValue);
+          priceText = isVietLinhDesign ? ("Mua font: " + priceValue) : ("Phí Việt hoá: " + priceValue);
         }
 
-        // Xử lý số lượng style/styles
-        let countDisplay = "1 style"; 
-        const styleMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
-        if (styleMatch) {
-          const num = parseInt(styleMatch[2]);
-          countDisplay = num > 1 ? `${num} styles` : `${num} style`;
+        let countText = "1 style"; 
+        const sMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
+        if (sMatch) {
+          const num = parseInt(sMatch[2]);
+          countText = num > 1 ? `${num} styles` : `${num} style`;
         }
 
-        let download = "";
+        let downloadLink = "";
         const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
-        if (dMatch) download = dMatch[0].replace(/&amp;/g, '&');
+        if (dMatch) downloadLink = dMatch[0].replace(/&amp;/g, '&');
 
-        // Xác định điều kiện hiện Huy hiệu VIP và Link mua/tải
         const isVip = labels.some(l => l.includes('VIP') || l.includes('TraPhi')) || isPaid;
-        const finalLink = isVip ? "https://m.me/FontVietLinh" : (download || blogLink);
+        const finalLink = isVip ? "https://m.me/FontVietLinh" : (downloadLink || blogLink);
         
-        let img = "https://via.placeholder.com/400x250";
-        const m = content.match(/src="([^"]+)"/);
-        if (m) img = m[1];
+        let imgSrc = "https://via.placeholder.com/400x250";
+        const imgMatch = content.match(/src="([^"]+)"/);
+        if (imgMatch) imgSrc = imgMatch[1];
+
+        // LOGIC MỚI: TÍCH HỢP SVG CROWN VÀO HUY HIỆU VIP
+        const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
 
         const card = document.createElement('div');
         card.className = 'font-card';
         card.innerHTML = `
-          ${isVip ? '<div class="badge-vip">VIP</div>' : ''}
-          <div class="media-wrap"><img src="${img}" class="font-img" alt="${title}"></div>
+          ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
+          <div class="media-wrap"><img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy"></div>
           <div class="font-info">
             <div class="font-title">${title}</div>
             <div class="font-meta-row">
-              <div class="font-price">${price}</div>
-              <div class="font-count">${countDisplay}</div>
+              <div class="font-price">${priceText}</div>
+              <div class="font-count">${countText}</div>
             </div>
-            <a href="${finalLink}" target="_blank" class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
+            <a href="${finalLink}" target="_blank" rel="noopener noreferrer"
+               class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
               ${isVip ? 'Mua ngay' : 'Tải ngay'}
             </a>
           </div>`;
@@ -243,7 +313,7 @@
       startIndex += maxResults;
     }
 
-    function loadByLabel(l) { currentLabel = l; currentSearch = ''; reset(); }
+    function loadByLabel(label) { currentLabel = label; currentSearch = ''; reset(); }
     function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; reset(); } }
     function reset() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; fetchPosts(); }
 
