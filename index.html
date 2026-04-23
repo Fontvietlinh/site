@@ -104,8 +104,8 @@
 
     nav { display: flex; gap: 10px; padding: 10px 8px; overflow-x: auto; scrollbar-width: none; }
     nav::-webkit-scrollbar { display: none; }
-    nav a { flex: 0 0 auto; text-decoration: none; color: var(--color-text-muted); padding: 8px 16px; border-radius: 999px; font-weight: 600; cursor: pointer; }
-    nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+    nav a { flex: 0 0 auto; text-decoration: none; color: var(--color-text-muted); padding: 8px 16px; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    nav a:hover, nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
 
     .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 24px; padding: 22px 0; }
     .font-card { position: relative; background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
@@ -176,7 +176,7 @@
       <a onclick="loadByLabel('')" class="active">Tất cả</a>
       <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
       <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
-      <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
+      <a onclick="loadByLabel('FontVietLinh')">Việt Linh Thiết kế</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
     </nav>
 
@@ -212,10 +212,8 @@
         const labels = post.category ? post.category.map(c => c.term) : [];
         const blogLink = post.link.find(l => l.rel === 'alternate').href;
 
-        // PHÂN BIỆT FONT THIẾT KẾ VÀ VIỆT HÓA
         const isVietLinhDesign = title.toLowerCase().includes("việt linh");
 
-        // XỬ LÝ GIÁ
         let priceText = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
         if (pMatch) { 
@@ -224,7 +222,6 @@
           priceText = isVietLinhDesign ? ("Mua font: " + val) : ("Phí Việt hoá: " + val);
         }
 
-        // XỬ LÝ SỐ LƯỢNG STYLE (VIẾT THƯỜNG)
         let countText = "1 style"; 
         const sMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
         if (sMatch) {
@@ -232,7 +229,6 @@
           countText = num > 1 ? `${num} styles` : `${num} style`;
         }
 
-        // XỬ LÝ LINK VÀ ẢNH
         let downloadLink = "";
         const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
         if (dMatch) downloadLink = dMatch[0].replace(/&amp;/g, '&');
@@ -244,7 +240,6 @@
         const imgMatch = content.match(/src="([^"]+)"/);
         if (imgMatch) imgSrc = imgMatch[1];
 
-        // ICON VƯƠNG MIỆN SVG
         const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
 
         const card = document.createElement('div');
@@ -267,11 +262,18 @@
       startIndex += maxResults;
     }
 
-    function loadByLabel(l) { currentLabel = l; currentSearch = ''; reset(); }
+    function loadByLabel(l) { 
+      currentLabel = l; 
+      currentSearch = ''; 
+      reset(); 
+      // Cập nhật trạng thái active cho menu
+      document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
     function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; reset(); } }
     function reset() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; fetchPosts(); }
 
-    // ĐĂNG KÝ SERVICE WORKER CHO APP
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch(err => console.log('PWA Error', err));
