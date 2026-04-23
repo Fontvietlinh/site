@@ -3,11 +3,6 @@
 <head>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
-  
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#8a6a2f">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
@@ -18,458 +13,112 @@
     :root {
       --font-body: 'Be Vietnam Pro', sans-serif;
       --font-display: 'Alfa Slab One', 'Cormorant Garamond', serif;
-
-      --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.82rem);
-      --text-sm: clamp(0.875rem, 0.84rem + 0.18vw, 0.98rem);
-      --text-base: clamp(1rem, 0.97rem + 0.2vw, 1.1rem);
-      --text-lg: clamp(1.15rem, 1.03rem + 0.45vw, 1.45rem);
-      --text-xl: clamp(1.8rem, 1.4rem + 1.2vw, 2.7rem);
-
-      --space-1: 0.25rem;
-      --space-2: 0.5rem;
-      --space-3: 0.75rem;
-      --space-4: 1rem;
-      --space-5: 1.25rem;
-      --space-6: 1.5rem;
-      --space-8: 2rem;
-      --space-10: 2.5rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --space-20: 5rem;
-
-      --radius-sm: 0.5rem;
-      --radius-md: 0.9rem;
-      --radius-lg: 1.2rem;
-      --radius-xl: 1.6rem;
-      --radius-full: 999px;
-
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
-
-      --bg-paper: none;
       --color-bg: #f7f5f0;
       --color-surface: rgba(255,255,255,0.72);
-      --color-surface-2: rgba(255,255,255,0.92);
       --color-text: #191919;
       --color-text-muted: #68645c;
       --color-border: rgba(25,25,25,0.10);
       --color-divider: rgba(25,25,25,0.08);
-      --color-primary: #111111;
-      --color-primary-hover: #2b2b2b;
       --color-accent: #8a6a2f;
-      --color-accent-soft: rgba(138,106,47,0.12);
-      --color-nav: rgba(255,255,255,0.65);
-      --color-search: rgba(255,255,255,0.82);
-      --color-card-shadow: 0 18px 45px rgba(17,17,17,0.08);
-      --color-card-shadow-hover: 0 26px 70px rgba(17,17,17,0.14);
+      --price-color: #8a6a2f;
       --btn-free-bg: #111111;
       --btn-free-text: #ffffff;
       --btn-paid-bg: #8a6a2f;
       --btn-paid-text: #ffffff;
-      --price-color: #8a6a2f;
-      --badge-bg: #111111;
-      --badge-text: #ffffff;
-      --load-more-bg: transparent;
-      --load-more-text: #111111;
-      --logo-text: #111111;
-      --logo-subtext: #5f5a52;
-      --backdrop-blur: blur(18px);
+      --color-card-shadow: 0 18px 45px rgba(17,17,17,0.08);
     }
 
     [data-theme='paper'] {
       --color-bg: #efe3cf;
       --color-surface: rgba(255,248,236,0.72);
-      --color-surface-2: rgba(255,246,231,0.92);
       --color-text: #2c2117;
       --color-text-muted: #73614f;
-      --color-border: rgba(69,48,28,0.14);
-      --color-divider: rgba(69,48,28,0.10);
-      --color-primary: #2f2217;
-      --color-primary-hover: #4c3826;
       --color-accent: #7a4f1d;
-      --color-accent-soft: rgba(122,79,29,0.12);
-      --color-nav: rgba(58,39,24,0.88);
-      --color-search: rgba(255,248,237,0.76);
-      --color-card-shadow: 0 20px 50px rgba(61,41,23,0.10);
-      --color-card-shadow-hover: 0 32px 80px rgba(61,41,23,0.16);
-      --btn-free-bg: #2f2217;
-      --btn-free-text: #fff8ef;
-      --btn-paid-bg: #7a4f1d;
-      --btn-paid-text: #fff8ef;
       --price-color: #7a4f1d;
-      --badge-bg: #2f2217;
-      --badge-text: #fff8ef;
-      --load-more-text: #2f2217;
-      --logo-text: #2f2217;
-      --logo-subtext: #6d5b49;
-      --bg-paper: radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 38%), linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+      --btn-free-bg: #2f2217;
+      --btn-paid-bg: #7a4f1d;
     }
 
     [data-theme='dark'] {
       --color-bg: #0b0b0b;
       --color-surface: rgba(20,20,20,0.82);
-      --color-surface-2: rgba(26,26,26,0.94);
       --color-text: #efede8;
       --color-text-muted: #a9a39a;
-      --color-border: rgba(239,237,232,0.10);
-      --color-divider: rgba(239,237,232,0.08);
-      --color-primary: #f2eee6;
-      --color-primary-hover: #ffffff;
       --color-accent: #c4a25a;
-      --color-accent-soft: rgba(196,162,90,0.12);
-      --color-nav: rgba(18,18,18,0.84);
-      --color-search: rgba(23,23,23,0.88);
-      --color-card-shadow: 0 20px 52px rgba(0,0,0,0.38);
-      --color-card-shadow-hover: 0 34px 90px rgba(0,0,0,0.52);
+      --price-color: #d5b676;
       --btn-free-bg: #f2eee6;
       --btn-free-text: #0b0b0b;
       --btn-paid-bg: #c4a25a;
       --btn-paid-text: #121212;
-      --price-color: #d5b676;
-      --badge-bg: #f2eee6;
-      --badge-text: #121212;
-      --load-more-text: #f2eee6;
-      --logo-text: #f2eee6;
-      --logo-subtext: #a9a39a;
-      --bg-paper: radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 40%);
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      min-height: 100vh;
+      margin: 0; min-height: 100vh;
       font-family: var(--font-body);
-      font-size: var(--text-base);
       color: var(--color-text);
-      background:
-        radial-gradient(circle at top right, var(--color-accent-soft), transparent 24%),
-        radial-gradient(circle at left center, rgba(255,255,255,0.05), transparent 24%),
-        var(--bg-paper),
-        var(--color-bg);
+      background-color: var(--color-bg);
       transition: background-color var(--transition), color var(--transition);
     }
 
-    a, button, input { font: inherit; }
-    img { display: block; max-width: 100%; }
+    .site-shell { width: min(1440px, calc(100% - 28px)); margin: 20px auto; }
 
-    .site-shell {
-      width: min(1440px, calc(100% - 28px));
-      margin: 20px auto 32px;
-    }
-
-    header {
-      position: sticky;
-      top: 12px;
-      z-index: 100;
-      margin-bottom: var(--space-4);
-    }
-
+    header { position: sticky; top: 12px; z-index: 100; margin-bottom: 1rem; }
     .header-panel {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: var(--space-5);
-      padding: 16px 18px;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-      backdrop-filter: var(--backdrop-blur);
-      -webkit-backdrop-filter: var(--backdrop-blur);
-      border-radius: 24px;
-      box-shadow: var(--color-card-shadow);
+      display: grid; grid-template-columns: auto 1fr auto;
+      align-items: center; gap: 1.25rem; padding: 16px 18px;
+      border: 1px solid var(--color-border); background: var(--color-surface);
+      backdrop-filter: blur(18px); border-radius: 24px; box-shadow: var(--color-card-shadow);
     }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .logo-mark {
-      width: 72px;
-      height: 72px;
-      border-radius: 22px;
-      padding: 8px;
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
-      flex: 0 0 auto;
-    }
-
+    .logo-area { display: flex; align-items: center; gap: 14px; }
+    .logo-mark { width: 72px; height: 72px; border-radius: 22px; padding: 8px; background: rgba(255,255,255,0.9); border: 1px solid var(--color-border); }
     .logo-img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); }
 
-    .logo-info {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .search-container { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border: 1px solid var(--color-border); background: rgba(255,255,255,0.1); border-radius: 999px; }
+    .search-container input { border: none; background: transparent; color: inherit; width: 100%; outline: none; }
 
-    .logo-text {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
-      line-height: 0.95;
-      letter-spacing: 0.04em;
-      color: var(--logo-text);
-      white-space: nowrap;
-    }
+    .theme-area { display: flex; gap: 8px; }
+    .theme-btn { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 1px solid var(--color-border); }
+    .btn-white { background: #fff; } .btn-paper { background: #d5b892; } .btn-dark { background: #131313; }
 
-    .logo-slogan { font-size: var(--text-sm); color: var(--logo-subtext); white-space: nowrap; }
+    nav { display: flex; gap: 10px; padding: 10px 0; overflow-x: auto; }
+    nav a { padding: 8px 16px; border-radius: 999px; text-decoration: none; color: var(--color-text-muted); font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+    nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
 
-    .search-area { display: flex; align-items: center; justify-content: center; min-width: 0; }
+    .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .font-card { background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: all var(--transition); position: relative; }
+    .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
 
-    .search-container {
-      width: min(100%, 460px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border: 1px solid var(--color-border);
-      background: var(--color-search);
-      border-radius: 999px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
-    }
+    .badge-vip { position: absolute; top: 12px; right: 12px; z-index: 2; background: linear-gradient(135deg, #c9920a, #f5c842); color: #1a0f00; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 999px; }
 
-    .search-container::before {
-      content: '⌕';
-      font-size: 16px;
-      color: var(--color-text-muted);
-      line-height: 1;
-    }
+    .media-wrap { aspect-ratio: 16/10; overflow: hidden; background: #eee; border-bottom: 1px solid var(--color-divider); }
+    .font-img { width: 100%; height: 100%; object-fit: cover; }
 
-    .search-container input {
-      width: 100%;
-      border: none;
-      outline: none;
-      color: var(--color-text);
-      background: transparent;
-      font-size: var(--text-sm);
-    }
-
-    .search-container input::placeholder { color: var(--color-text-muted); }
-
-    .theme-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px;
-      border-radius: 999px;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface-2);
-    }
-
-    .theme-btn {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.24);
-      cursor: pointer;
-      box-shadow: 0 0 0 3px transparent;
-      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
-    }
-
-    .theme-btn:hover { transform: scale(1.08); }
-    .theme-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-accent-soft); }
-    .btn-white { background: linear-gradient(135deg, #ffffff, #d9d4ca); }
-    .btn-paper { background: linear-gradient(135deg, #d5b892, #7a4f1d); }
-    .btn-dark { background: linear-gradient(135deg, #131313, #7a7a7a); }
-
-    .sort-btn {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--color-text-muted);
-      font-family: var(--font-body);
-      font-size: var(--text-sm);
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      white-space: nowrap;
-      margin-left: auto;
-      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
-    }
-    .sort-btn:hover {
-      color: var(--color-text);
-      border-color: var(--color-border);
-      background: var(--color-surface);
-      transform: translateY(-1px);
-    }
-    .sort-btn.active {
-      color: var(--color-accent);
-      border-color: var(--color-accent);
-      background: var(--color-accent-soft);
-    }
-    .sort-btn svg { flex: 0 0 auto; pointer-events: none; }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 10px 8px 4px;
-      scrollbar-width: none;
-    }
-
-    nav::-webkit-scrollbar { display: none; }
-
-    nav a {
-      flex: 0 0 auto;
-      text-decoration: none;
-      color: var(--color-text-muted);
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      font-size: var(--text-sm);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
-      cursor: pointer;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: var(--color-text);
-      border-color: var(--color-border);
-      background: var(--color-surface);
-      transform: translateY(-1px);
-    }
-
-    .nav-external { color: var(--color-accent) !important; }
-
-    .font-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
-      gap: 24px;
-      padding: 22px 0 12px;
-    }
-
-    .font-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 28px;
-      border: 1px solid var(--color-border);
-      background: var(--color-surface);
-      backdrop-filter: var(--backdrop-blur);
-      -webkit-backdrop-filter: var(--backdrop-blur);
-      box-shadow: var(--color-card-shadow);
-      transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1), border-color 260ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .font-card:hover { transform: translateY(-8px); box-shadow: var(--color-card-shadow-hover); border-color: var(--color-accent-soft); }
-
-    .badge-vip {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 2;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 13px 6px 9px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #c9920a 0%, #f5c842 55%, #e8a800 100%);
-      color: #1a0f00;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      box-shadow: 0 4px 14px rgba(201,146,10,0.55), 0 1px 0 rgba(255,255,255,0.22) inset;
-      border: 1px solid rgba(255,220,80,0.45);
-    }
-
-    .media-wrap {
-      position: relative;
-      aspect-ratio: 16/10;
-      overflow: hidden;
-      background: var(--color-surface-2);
-      border-bottom: 1px solid var(--color-divider);
-    }
-
-    .font-img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1); }
-    .font-card:hover .font-img { transform: scale(1.03); }
-
-    .font-info { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px 18px; }
-
-    .font-title {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      min-height: 2.2em;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.42;
-      color: var(--color-text);
-    }
-
-    .font-meta-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .font-price { color: var(--price-color); font-weight: 700; font-size: var(--text-sm); }
+    .font-info { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .font-title { font-weight: 700; font-size: 1.1rem; min-height: 2.8em; line-height: 1.4; }
     
-    /* Style mới cho số lượng font */
+    .font-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+    .font-price { color: var(--price-color); font-weight: 700; font-size: 1rem; }
+    
+    /* STYLE MỚI CHO SỐ LƯỢNG STYLE - TO VÀ RÕ RÀNG HƠN */
     .font-count {
-      font-size: 11px;
+      font-size: 13px; /* Tăng kích thước từ 11px lên 13px */
       font-weight: 700;
       color: var(--color-text-muted);
       background: var(--color-divider);
-      padding: 2px 8px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
+      padding: 4px 12px; /* Tăng padding để ô trông cân đối hơn */
+      border-radius: 8px;
     }
 
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 16px;
-      text-decoration: none;
-      font-size: var(--text-sm);
-      font-weight: 700;
-      text-transform: uppercase;
-      transition: all var(--transition);
-    }
-
-    .btn-download:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.14); }
+    .btn-download { display: block; width: 100%; padding: 14px; text-align: center; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; transition: transform 0.2s; }
+    .btn-download:hover { transform: scale(1.02); }
     .btn-free { background: var(--btn-free-bg); color: var(--btn-free-text); }
     .btn-paid { background: var(--btn-paid-bg); color: var(--btn-paid-text); }
 
-    .load-more-container { text-align: center; padding: 22px 0 50px; }
-    #load-more-btn {
-      min-width: 220px;
-      min-height: 52px;
-      border-radius: 999px;
-      border: 1px solid var(--color-border);
-      background: var(--load-more-bg);
-      color: var(--load-more-text);
-      padding: 12px 26px;
-      font-weight: 700;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    @media (max-width: 980px) {
-      .header-panel { grid-template-columns: 1fr; gap: 14px; }
-      .search-area { justify-content: stretch; }
-      .search-container { width: 100%; max-width: 100%; }
-    }
+    #load-more-btn { display: block; margin: 30px auto; padding: 12px 40px; border-radius: 999px; border: 1px solid var(--color-border); background: transparent; color: inherit; font-weight: 700; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -477,19 +126,10 @@
     <header>
       <div class="header-panel">
         <div class="logo-area">
-          <div class="logo-mark">
-            <img src="images/logo.png" class="logo-img" alt="Logo FONT VIỆT LINH">
-          </div>
-          <div class="logo-info">
-            <span class="logo-text">FONT VIỆT LINH</span>
-            <span class="logo-slogan">Chữ Việt cho người Việt</span>
-          </div>
+          <div class="logo-mark"><img src="images/logo.png" class="logo-img" alt="Logo"></div>
+          <div class="logo-info"><span class="logo-text">FONT VIỆT LINH</span></div>
         </div>
-        <div class="search-area">
-          <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Tìm font, tên bài viết hoặc từ khóa..." onkeypress="handleSearch(event)">
-          </div>
-        </div>
+        <div class="search-area"><div class="search-container"><input type="text" id="searchInput" placeholder="Tìm font..." onkeypress="handleSearch(event)"></div></div>
         <div class="theme-area">
           <button class="theme-btn btn-white" onclick="setTheme('white')"></button>
           <button class="theme-btn btn-paper" onclick="setTheme('paper')"></button>
@@ -504,158 +144,84 @@
       <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
       <a onclick="loadByLabel('FontVietLinh')">Thiết kế</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
-      <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>
-        A → Z
-      </button>
     </nav>
+
     <div class="font-grid" id="font-container"></div>
-    <div class="load-more-container"><button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button></div>
+    <button id="load-more-btn" onclick="fetchPosts()">Xem thêm font</button>
   </div>
 
   <script>
     const blogId = "5243210247122196079";
-    let startIndex = 1;
-    const maxResults = 24;
-    let currentLabel = '';
-    let currentSearch = '';
-    let totalLoaded = 0;
-    let sortAZ = false;
+    let startIndex = 1, maxResults = 24, currentLabel = '', currentSearch = '', totalLoaded = 0;
 
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('font-linh-theme', theme);
-    }
-    setTheme(localStorage.getItem('font-linh-theme') || 'paper');
+    function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('f-theme', t); }
+    setTheme(localStorage.getItem('f-theme') || 'paper');
 
     function fetchPosts() {
-      const script = document.createElement('script');
+      const s = document.createElement('script');
       let url = `https://www.blogger.com/feeds/${blogId}/posts/default?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
       if (currentLabel) url = `https://www.blogger.com/feeds/${blogId}/posts/default/-/${currentLabel}?alt=json-in-script&callback=render&start-index=${startIndex}&max-results=${maxResults}`;
       if (currentSearch) url += `&q=${encodeURIComponent(currentSearch)}`;
-      script.src = url;
-      document.body.appendChild(script);
+      s.src = url; document.body.appendChild(s);
     }
 
     function render(data) {
       const container = document.getElementById('font-container');
-      if (!data.feed.entry) {
-        document.getElementById('load-more-btn').innerText = "Hết dữ liệu";
-        return;
-      }
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (!data.feed.entry) { document.getElementById('load-more-btn').innerText = "Hết dữ liệu"; return; }
 
-      data.feed.entry.forEach(function(post) {
+      data.feed.entry.forEach(post => {
         const title = post.title.$t;
-        const blogLink = post.link.find(function(l){ return l.rel === 'alternate'; }).href;
+        const blogLink = post.link.find(l => l.rel === 'alternate').href;
         const content = post.content.$t;
-        const labels = post.category ? post.category.map(function(c){ return c.term; }) : [];
+        const labels = post.category ? post.category.map(c => c.term) : [];
 
-        // Lấy giá tiền
-        let priceText = "";
-        let isPaid = false;
-        const priceMatch = content.match(/(Giá|Gia|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
-        if (priceMatch) {
-          isPaid = true;
-          priceText = "Phí: " + priceMatch[2].toLowerCase();
+        // Lấy thông tin giá
+        let price = "Miễn phí", isPaid = false;
+        const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
+        if (pMatch) { price = "phí: " + pMatch[2].toLowerCase(); isPaid = true; }
+
+        // LOGIC: Lấy số lượng style/styles viết thường
+        let countDisplay = "1 style"; 
+        const styleMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
+        if (styleMatch) {
+          const num = parseInt(styleMatch[2]);
+          countDisplay = num > 1 ? `${num} styles` : `${num} style`;
         }
 
-        // --- LOGIC MỚI: LẤY SỐ LƯỢNG FONT ---
-        let fontCountText = "1 Font"; // Mặc định
-        const fontMatch = content.match(/(Số font|Số Styles):\s*(\d+)/i);
-        if (fontMatch) {
-            fontCountText = fontMatch[2] + " Fonts";
-        }
-        // ------------------------------------
+        let download = "";
+        const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
+        if (dMatch) download = dMatch[0].replace(/&amp;/g, '&');
 
-        let downloadLink = "";
-        const driveMatch = content.match(/https:\/\/drive\.google\.com\/[^<"\s]+/);
-        const bitlyMatch = content.match(/https:\/\/bit\.ly\/[^<"\s]+/);
-        if (driveMatch) downloadLink = driveMatch[0].replace(/&amp;/g, '&');
-        else if (bitlyMatch) downloadLink = bitlyMatch[0];
-
-        const isVip = labels.some(function(l){
-          return l === 'FontTraPhi' || l === 'FontVip' || l.toUpperCase().includes('VIP');
-        }) || isPaid;
-
-        const finalLink = isVip
-          ? (isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh")
-          : (downloadLink || blogLink);
-
-        let imgSrc = "https://via.placeholder.com/400x250?text=Font+Viet+Linh";
-        if (content.includes('<img')) {
-          const m = content.match(/src="([^"]+)"/);
-          if (m) imgSrc = m[1];
-        }
+        const isVip = labels.some(l => l.includes('VIP') || l.includes('TraPhi')) || isPaid;
+        const finalLink = isVip ? "https://m.me/FontVietLinh" : (download || blogLink);
+        
+        let img = "https://via.placeholder.com/400x250";
+        const m = content.match(/src="([^"]+)"/);
+        if (m) img = m[1];
 
         const card = document.createElement('div');
         card.className = 'font-card';
-        card.dataset.order = totalLoaded;
-        totalLoaded++;
-
-        const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2"/></svg>`;
-
         card.innerHTML = `
-          ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
-          <div class="media-wrap">
-            <img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy">
-          </div>
+          ${isVip ? '<div class="badge-vip">VIP</div>' : ''}
+          <div class="media-wrap"><img src="${img}" class="font-img" alt="${title}"></div>
           <div class="font-info">
             <div class="font-title">${title}</div>
             <div class="font-meta-row">
-              <div class="font-price">${priceText || 'Miễn phí'}</div>
-              <div class="font-count">${fontCountText}</div>
+              <div class="font-price">${price}</div>
+              <div class="font-count">${countDisplay}</div>
             </div>
-            <a href="${finalLink}" target="_blank" rel="noopener noreferrer"
-               class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
+            <a href="${finalLink}" target="_blank" class="btn-download ${isVip ? 'btn-paid' : 'btn-free'}">
               ${isVip ? 'Mua ngay' : 'Tải ngay'}
             </a>
           </div>`;
-
         container.appendChild(card);
       });
-
       startIndex += maxResults;
-      if (sortAZ) applySortToDOM();
     }
 
-    function toggleSort() {
-      sortAZ = !sortAZ;
-      applySortToDOM();
-    }
-
-    function applySortToDOM() {
-      const container = document.getElementById('font-container');
-      const cards = Array.from(container.children);
-      cards.sort(function(a, b) {
-        if (sortAZ) {
-          const ta = a.querySelector('.font-title').textContent;
-          const tb = b.querySelector('.font-title').textContent;
-          return ta.trim().localeCompare(tb.trim(), 'vi');
-        }
-        return parseInt(a.dataset.order) - parseInt(b.dataset.order);
-      });
-      cards.forEach(function(c) { container.appendChild(c); });
-    }
-
-    function loadByLabel(label) {
-      currentLabel = label; currentSearch = '';
-      resetAndFetch();
-    }
-
-    function handleSearch(e) {
-      if (e.key === 'Enter') {
-        currentSearch = document.getElementById('searchInput').value;
-        currentLabel = '';
-        resetAndFetch();
-      }
-    }
-
-    function resetAndFetch() {
-      document.getElementById('font-container').innerHTML = '';
-      startIndex = 1; totalLoaded = 0;
-      fetchPosts();
-    }
+    function loadByLabel(l) { currentLabel = l; currentSearch = ''; reset(); }
+    function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; reset(); } }
+    function reset() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; fetchPosts(); }
 
     fetchPosts();
   </script>
