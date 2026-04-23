@@ -7,12 +7,15 @@
   <meta name="theme-color" content="#8a6a2f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --font-body: 'Be Vietnam Pro', sans-serif;
@@ -87,7 +90,6 @@
     .logo-mark { width: 72px; height: 72px; border-radius: 22px; padding: 8px; background: var(--color-surface-2); border: 1px solid var(--color-border); }
     .logo-img { width: 100%; height: 100%; object-fit: contain; }
     
-    /* FIX: Slogan nằm dưới tên */
     .logo-info { display: flex; flex-direction: column; gap: 2px; }
     .logo-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); line-height: 1; }
     .logo-slogan { font-size: 0.85rem; color: var(--color-text-muted); }
@@ -105,7 +107,7 @@
     nav { display: flex; gap: 10px; padding: 10px 8px; overflow-x: auto; scrollbar-width: none; align-items: center; }
     nav::-webkit-scrollbar { display: none; }
     nav a { flex: 0 0 auto; text-decoration: none; color: var(--color-text-muted); padding: 8px 16px; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+    nav a:hover, nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
     .nav-external { color: var(--color-accent) !important; }
 
     .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 24px; padding: 22px 0; }
@@ -179,6 +181,7 @@
       <a onclick="loadByLabel('FontVietLinh')">Việt Linh Thiết kế</a>
       <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" rel="noopener noreferrer" class="nav-external">Gói 4500 font</a>
       <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
+      <a onclick="openContact()" style="cursor:pointer">Liên hệ</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
     </nav>
 
@@ -262,6 +265,12 @@
         container.appendChild(card);
       });
       startIndex += maxResults;
+    }
+
+    function openContact() {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const url = isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh";
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function loadByLabel(l) { 
