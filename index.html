@@ -7,15 +7,12 @@
   <meta name="theme-color" content="#8a6a2f">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FONT VIỆT LINH - Chữ Việt cho người Việt</title>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Alfa+Slab+One&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --font-body: 'Be Vietnam Pro', sans-serif;
@@ -89,7 +86,10 @@
     .logo-area { display: flex; align-items: center; gap: 14px; }
     .logo-mark { width: 72px; height: 72px; border-radius: 22px; padding: 8px; background: var(--color-surface-2); border: 1px solid var(--color-border); }
     .logo-img { width: 100%; height: 100%; object-fit: contain; }
-    .logo-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); }
+    
+    /* FIX: Slogan nằm dưới tên */
+    .logo-info { display: flex; flex-direction: column; gap: 2px; }
+    .logo-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); line-height: 1; }
     .logo-slogan { font-size: 0.85rem; color: var(--color-text-muted); }
 
     .search-container {
@@ -102,16 +102,16 @@
     .theme-btn { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(0,0,0,0.2); }
     .btn-white { background: #fff; } .btn-paper { background: #d5b892; } .btn-dark { background: #131313; }
 
-    nav { display: flex; gap: 10px; padding: 10px 8px; overflow-x: auto; scrollbar-width: none; }
+    nav { display: flex; gap: 10px; padding: 10px 8px; overflow-x: auto; scrollbar-width: none; align-items: center; }
     nav::-webkit-scrollbar { display: none; }
     nav a { flex: 0 0 auto; text-decoration: none; color: var(--color-text-muted); padding: 8px 16px; border-radius: 999px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-    nav a:hover, nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+    nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+    .nav-external { color: var(--color-accent) !important; }
 
     .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 24px; padding: 22px 0; }
     .font-card { position: relative; background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
     .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
 
-    /* HUY HIỆU VIP VỚI BIỂU TƯỢNG VƯƠNG MIỆN */
     .badge-vip {
       position: absolute; top: 12px; right: 12px; z-index: 2;
       display: inline-flex; align-items: center; gap: 5px;
@@ -177,6 +177,8 @@
       <a onclick="loadByLabel('FontVietHoa')">Việt hóa</a>
       <a onclick="loadByLabel('FontTraPhi')">Font VIP</a>
       <a onclick="loadByLabel('FontVietLinh')">Việt Linh Thiết kế</a>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid0MgsvYKxvMSTrqM5HR579RY4F2CHaqkPAJKk3Gz6UG4mTs8CtBpi7upVQbd7yHPJml" target="_blank" rel="noopener noreferrer" class="nav-external">Gói 4500 font</a>
+      <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
     </nav>
 
@@ -223,7 +225,7 @@
         }
 
         let countText = "1 style"; 
-        const sMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
+        const sMatch = content.match(/(Số font|Số Styles|Số style|Số font:):\s*(\d+)/i);
         if (sMatch) {
           const num = parseInt(sMatch[2]);
           countText = num > 1 ? `${num} styles` : `${num} style`;
@@ -263,12 +265,11 @@
     }
 
     function loadByLabel(l) { 
-      currentLabel = l; 
-      currentSearch = ''; 
-      reset(); 
-      // Cập nhật trạng thái active cho menu
-      document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-      event.target.classList.add('active');
+      currentLabel = l; currentSearch = ''; reset(); 
+      if (event && event.target.tagName === 'A') {
+        document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
+        event.target.classList.add('active');
+      }
     }
 
     function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; reset(); } }
