@@ -102,7 +102,14 @@
     .font-card { background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: all var(--transition); position: relative; }
     .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
 
-    .badge-vip { position: absolute; top: 12px; right: 12px; z-index: 2; background: linear-gradient(135deg, #c9920a, #f5c842); color: #1a0f00; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 999px; }
+    /* FIX: Đảm bảo Icon VIP hiển thị rõ ràng */
+    .badge-vip { 
+      position: absolute; top: 15px; right: 15px; z-index: 10; 
+      background: linear-gradient(135deg, #c9920a, #f5c842); 
+      color: #1a0f00; font-size: 11px; font-weight: 900; 
+      padding: 5px 12px; border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
 
     .media-wrap { aspect-ratio: 16/10; overflow: hidden; background: #eee; border-bottom: 1px solid var(--color-divider); }
     .font-img { width: 100%; height: 100%; object-fit: cover; }
@@ -184,20 +191,19 @@
         const content = post.content.$t;
         const labels = post.category ? post.category.map(c => c.term) : [];
 
-        // Kiểm tra xem tên font có chữ "Việt Linh" không
+        // Kiểm tra nguồn gốc thiết kế
         const isVietLinhDesign = title.toLowerCase().includes("việt linh");
 
-        // Lấy thông tin giá
+        // Xử lý giá tiền và nhãn
         let price = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
         if (pMatch) { 
           isPaid = true;
           const priceValue = pMatch[2].toLowerCase();
-          // Logic đổi nhãn dựa trên nguồn gốc font
           price = isVietLinhDesign ? ("Mua font: " + priceValue) : ("Phí Việt hoá: " + priceValue);
         }
 
-        // Logic lấy số lượng style/styles viết thường
+        // Xử lý số lượng style/styles
         let countDisplay = "1 style"; 
         const styleMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
         if (styleMatch) {
@@ -209,6 +215,7 @@
         const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
         if (dMatch) download = dMatch[0].replace(/&amp;/g, '&');
 
+        // Xác định điều kiện hiện Huy hiệu VIP và Link mua/tải
         const isVip = labels.some(l => l.includes('VIP') || l.includes('TraPhi')) || isPaid;
         const finalLink = isVip ? "https://m.me/FontVietLinh" : (download || blogLink);
         
