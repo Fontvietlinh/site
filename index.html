@@ -103,13 +103,12 @@
     .font-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
     .font-price { color: var(--price-color); font-weight: 700; font-size: 1rem; }
     
-    /* STYLE MỚI CHO SỐ LƯỢNG STYLE - TO VÀ RÕ RÀNG HƠN */
     .font-count {
-      font-size: 13px; /* Tăng kích thước từ 11px lên 13px */
+      font-size: 13px;
       font-weight: 700;
       color: var(--color-text-muted);
       background: var(--color-divider);
-      padding: 4px 12px; /* Tăng padding để ô trông cân đối hơn */
+      padding: 4px 12px;
       border-radius: 8px;
     }
 
@@ -175,12 +174,15 @@
         const content = post.content.$t;
         const labels = post.category ? post.category.map(c => c.term) : [];
 
-        // Lấy thông tin giá
+        // --- CẬP NHẬT: Lấy thông tin giá với cụm từ "Phí Việt hoá:" ---
         let price = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
-        if (pMatch) { price = "phí: " + pMatch[2].toLowerCase(); isPaid = true; }
+        if (pMatch) { 
+          price = "Phí Việt hoá: " + pMatch[2].toLowerCase(); 
+          isPaid = true; 
+        }
 
-        // LOGIC: Lấy số lượng style/styles viết thường
+        // Lấy số lượng style/styles
         let countDisplay = "1 style"; 
         const styleMatch = content.match(/(Số font|Số Styles|Số style):\s*(\d+)/i);
         if (styleMatch) {
