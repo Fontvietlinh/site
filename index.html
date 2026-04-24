@@ -100,6 +100,7 @@
     }
     .search-container input { border: none; background: transparent; color: inherit; width: 100%; outline: none; }
 
+    /* DẤU CHẤM GIAO DIỆN NHỎ 18PX */
     .theme-area { display: flex; gap: 10px; padding: 6px; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface-2); flex-shrink: 0; }
     .theme-btn { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(255,255,255,0.24); transition: transform 0.2s; }
     .btn-white { background: linear-gradient(135deg, #ffffff, #d9d4ca); }
@@ -121,6 +122,7 @@
     .font-card { position: relative; background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
     .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
 
+    /* HUY HIỆU VIP VỚI CROWN */
     .badge-vip {
       position: absolute; top: 12px; right: 12px; z-index: 2;
       display: inline-flex; align-items: center; gap: 5px;
@@ -137,8 +139,6 @@
     .font-card:hover .font-img { transform: scale(1.03); }
 
     .font-info { padding: 18px; display: flex; flex-direction: column; gap: 4px; }
-    
-    /* Style cho tiêu đề font (có link hoặc không) */
     .font-title { font-weight: 700; font-size: 1rem; min-height: 2.84em; line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .font-title a { text-decoration: none; color: inherit; transition: color 0.2s; }
     .font-title a:hover { color: var(--color-accent); }
@@ -229,10 +229,8 @@
         const labels = post.category ? post.category.map(c => c.term) : [];
         const blogLink = post.link.find(l => l.rel === 'alternate').href;
 
-        // PHÂN BIỆT FONT THIẾT KẾ VÀ VIỆT HÓA
         const isVietLinhDesign = title.toLowerCase().includes("việt linh");
 
-        // XỬ LÝ GIÁ
         let priceText = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
         if (pMatch) { 
@@ -241,7 +239,6 @@
           priceText = isVietLinhDesign ? ("Mua font: " + val) : ("Phí Việt hoá: " + val);
         }
 
-        // XỬ LÝ SỐ LƯỢNG STYLE
         let countText = "1 style"; 
         const sMatch = content.match(/(Số font|Số Styles|Số style|Số font:):\s*(\d+)/i);
         if (sMatch) {
@@ -249,15 +246,13 @@
           countText = num > 1 ? `${num} styles` : `${num} style`;
         }
 
-        // XỬ LÝ LINK (FB VÀ DOWNLOAD)
         let downloadLink = "";
         const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
         if (dMatch) downloadLink = dMatch[0].replace(/&amp;/g, '&');
 
-        // LOGIC MỚI: QUÉT LINK FACEBOOK TRONG BÀI VIẾT ĐỂ GẮN VÀO TÊN FONT
-        let facebookPostLink = "";
+        let fbPostLink = "";
         const fbMatch = content.match(/https:\/\/www\.facebook\.com\/[^<"\s]+/);
-        if (fbMatch) facebookPostLink = fbMatch[0].replace(/&amp;/g, '&');
+        if (fbMatch) fbPostLink = fbMatch[0].replace(/&amp;/g, '&');
 
         const isVip = labels.some(l => l.includes('VIP') || l.includes('TraPhi')) || isPaid;
         
@@ -272,11 +267,11 @@
         const imgMatch = content.match(/src="([^"]+)"/);
         if (imgMatch) imgSrc = imgMatch[1];
 
+        // ICON VƯƠNG MIỆN SVG CHUẨN
         const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
 
-        // HIỂN THỊ TIÊU ĐỀ: CÓ LINK FB HOẶC KHÔNG
-        const titleHTML = facebookPostLink 
-            ? `<a href="${facebookPostLink}" target="_blank" rel="noopener noreferrer">${title}</a>`
+        const titleHTML = fbPostLink 
+            ? `<a href="${fbPostLink}" target="_blank" rel="noopener noreferrer">${title}</a>`
             : title;
 
         const card = document.createElement('div');
