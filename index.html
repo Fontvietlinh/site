@@ -137,8 +137,12 @@
     .font-card:hover .font-img { transform: scale(1.03); }
 
     .font-info { padding: 18px; display: flex; flex-direction: column; gap: 4px; }
-    .font-title { font-weight: 700; font-size: 1rem; min-height: 2.84em; line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     
+    /* Style cho tiêu đề font (có link hoặc không) */
+    .font-title { font-weight: 700; font-size: 1rem; min-height: 2.84em; line-height: 1.42; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .font-title a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .font-title a:hover { color: var(--color-accent); }
+
     .font-meta-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
     .font-price { color: var(--price-color); font-weight: 700; font-size: 0.95rem; }
     
@@ -225,8 +229,10 @@
         const labels = post.category ? post.category.map(c => c.term) : [];
         const blogLink = post.link.find(l => l.rel === 'alternate').href;
 
+        // PHÂN BIỆT FONT THIẾT KẾ VÀ VIỆT HÓA
         const isVietLinhDesign = title.toLowerCase().includes("việt linh");
 
+        // XỬ LÝ GIÁ
         let priceText = "Miễn phí", isPaid = false;
         const pMatch = content.match(/(Giá|Phí Việt hóa|Phí Việt Hoá):\s*([0-9.kđĐ]+)/i);
         if (pMatch) { 
@@ -235,6 +241,7 @@
           priceText = isVietLinhDesign ? ("Mua font: " + val) : ("Phí Việt hoá: " + val);
         }
 
+        // XỬ LÝ SỐ LƯỢNG STYLE
         let countText = "1 style"; 
         const sMatch = content.match(/(Số font|Số Styles|Số style|Số font:):\s*(\d+)/i);
         if (sMatch) {
@@ -242,19 +249,22 @@
           countText = num > 1 ? `${num} styles` : `${num} style`;
         }
 
+        // XỬ LÝ LINK (FB VÀ DOWNLOAD)
         let downloadLink = "";
         const dMatch = content.match(/https:\/\/(drive\.google\.com|bit\.ly)\/[^<"\s]+/);
         if (dMatch) downloadLink = dMatch[0].replace(/&amp;/g, '&');
 
-        // LOGIC FIX: Ưu tiên nhắn tin cho font trả phí (isVip), font free mới dùng downloadLink
+        // LOGIC MỚI: QUÉT LINK FACEBOOK TRONG BÀI VIẾT ĐỂ GẮN VÀO TÊN FONT
+        let facebookPostLink = "";
+        const fbMatch = content.match(/https:\/\/www\.facebook\.com\/[^<"\s]+/);
+        if (fbMatch) facebookPostLink = fbMatch[0].replace(/&amp;/g, '&');
+
         const isVip = labels.some(l => l.includes('VIP') || l.includes('TraPhi')) || isPaid;
         
         let finalLink;
         if (isVip) {
-            // Nếu là VIP/Trả phí -> Luôn mở Messenger
             finalLink = isMobile ? "https://m.me/FontVietLinh" : "https://www.facebook.com/messages/t/FontVietLinh";
         } else {
-            // Nếu Miễn phí -> Ưu tiên Link tải, nếu không có mới về blogLink
             finalLink = downloadLink || blogLink;
         }
         
@@ -264,13 +274,18 @@
 
         const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
 
+        // HIỂN THỊ TIÊU ĐỀ: CÓ LINK FB HOẶC KHÔNG
+        const titleHTML = facebookPostLink 
+            ? `<a href="${facebookPostLink}" target="_blank" rel="noopener noreferrer">${title}</a>`
+            : title;
+
         const card = document.createElement('div');
         card.className = 'font-card';
         card.innerHTML = `
           ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
           <div class="media-wrap"><img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy"></div>
           <div class="font-info">
-            <div class="font-title">${title}</div>
+            <div class="font-title">${titleHTML}</div>
             <div class="font-meta-row">
               <div class="font-price">${priceText}</div>
               <div class="font-count">${countText}</div>
