@@ -100,7 +100,6 @@
     }
     .search-container input { border: none; background: transparent; color: inherit; width: 100%; outline: none; }
 
-    /* DẤU CHẤM GIAO DIỆN NHỎ 18PX */
     .theme-area { display: flex; gap: 10px; padding: 6px; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface-2); flex-shrink: 0; }
     .theme-btn { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 1px solid rgba(255,255,255,0.24); transition: transform 0.2s; }
     .btn-white { background: linear-gradient(135deg, #ffffff, #d9d4ca); }
@@ -113,16 +112,26 @@
     nav a:hover, nav a.active { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
     .nav-external { color: var(--color-accent) !important; }
 
+    /* NÚT SORT - ĐẨY VỀ BÊN PHẢI */
+    .sort-btn {
+      flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 16px; border-radius: 999px; border: 1px solid transparent;
+      background: transparent; color: var(--color-text-muted);
+      font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-left: auto; transition: all 0.2s;
+    }
+    .sort-btn:hover { color: var(--color-text); border-color: var(--color-border); background: var(--color-surface); }
+    .sort-btn.active { color: var(--color-accent); border-color: var(--color-accent); background: rgba(138,106,47,0.1); }
+
     @media (max-width: 980px) {
       .header-panel { grid-template-columns: 1fr; gap: 14px; }
       .theme-area { justify-self: flex-start; }
+      .sort-btn { margin-left: 0; }
     }
 
     .font-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 24px; padding: 22px 0; }
     .font-card { position: relative; background: var(--color-surface); border-radius: 28px; border: 1px solid var(--color-border); overflow: hidden; transition: transform var(--transition), box-shadow var(--transition); }
     .font-card:hover { transform: translateY(-5px); box-shadow: 0 26px 70px rgba(17,17,17,0.14); }
 
-    /* HUY HIỆU VIP VỚI CROWN */
     .badge-vip {
       position: absolute; top: 12px; right: 12px; z-index: 2;
       display: inline-flex; align-items: center; gap: 5px;
@@ -194,6 +203,11 @@
       <a href="https://www.facebook.com/FontVietLinh/posts/pfbid027H6LU65Y7EPfawKGMgxU3BzBZ24cocA5AT4aQATPKAaaXFaa8DcYLcPJrsh695Efl" target="_blank" rel="noopener noreferrer" class="nav-external">Gói Cập Nhật T1-T6</a>
       <a onclick="openContact()" style="cursor:pointer">Liên hệ</a>
       <a href="https://zalo.me/0902922811" target="_blank">Zalo</a>
+      
+      <button class="sort-btn" id="sort-az-btn" onclick="toggleSort()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5M3 11h8M3 16h11"/><path d="M16 3l-3.5 8h7L16 3z"/><line x1="15" y1="17" x2="21" y2="17"/><line x1="18" y1="14" x2="18" y2="21"/></svg>
+        A → Z
+      </button>
     </nav>
 
     <div class="font-grid" id="font-container"></div>
@@ -202,7 +216,7 @@
 
   <script>
     const blogId = "5243210247122196079";
-    let startIndex = 1, maxResults = 24, currentLabel = '', currentSearch = '';
+    let startIndex = 1, maxResults = 24, currentLabel = '', currentSearch = '', totalLoaded = 0, sortAZ = false;
 
     function setTheme(t) {
       document.documentElement.setAttribute('data-theme', t);
@@ -267,7 +281,6 @@
         const imgMatch = content.match(/src="([^"]+)"/);
         if (imgMatch) imgSrc = imgMatch[1];
 
-        // ICON VƯƠNG MIỆN SVG CHUẨN
         const crownSVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 19h20M3 9l4.5 6L12 5l4.5 10L21 9l-1.5 10H4.5L3 9Z" stroke="#1a0f00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="3" cy="9" r="1.5" fill="#1a0f00"/><circle cx="12" cy="5" r="1.5" fill="#1a0f00"/><circle cx="21" cy="9" r="1.5" fill="#1a0f00"/></svg>`;
 
         const titleHTML = fbPostLink 
@@ -276,6 +289,9 @@
 
         const card = document.createElement('div');
         card.className = 'font-card';
+        card.dataset.order = totalLoaded;
+        totalLoaded++;
+
         card.innerHTML = `
           ${isVip ? `<div class="badge-vip">${crownSVG}VIP</div>` : ''}
           <div class="media-wrap"><img src="${imgSrc}" class="font-img" alt="${title}" loading="lazy"></div>
@@ -292,6 +308,35 @@
         container.appendChild(card);
       });
       startIndex += maxResults;
+      if (sortAZ) applySortToDOM();
+    }
+
+    function toggleSort() {
+      sortAZ = !sortAZ;
+      const btn = document.getElementById('sort-az-btn');
+      if (sortAZ) {
+        btn.classList.add('active');
+        btn.innerHTML = btn.innerHTML.replace('A → Z', 'A → Z ✓');
+      } else {
+        btn.classList.remove('active');
+        btn.innerHTML = btn.innerHTML.replace('A → Z ✓', 'A → Z');
+      }
+      applySortToDOM();
+    }
+
+    function applySortToDOM() {
+      const container = document.getElementById('font-container');
+      const cards = Array.from(container.children);
+      if (sortAZ) {
+        cards.sort((a, b) => {
+          const ta = a.querySelector('.font-title').textContent.trim();
+          const tb = b.querySelector('.font-title').textContent.trim();
+          return ta.localeCompare(tb, 'vi', { sensitivity: 'base' });
+        });
+      } else {
+        cards.sort((a, b) => parseInt(a.dataset.order) - parseInt(b.dataset.order));
+      }
+      cards.forEach(c => container.appendChild(c));
     }
 
     function openContact() {
@@ -309,7 +354,7 @@
     }
 
     function handleSearch(e) { if (e.key === 'Enter') { currentSearch = document.getElementById('searchInput').value; currentLabel = ''; reset(); } }
-    function reset() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; fetchPosts(); }
+    function reset() { document.getElementById('font-container').innerHTML = ''; startIndex = 1; totalLoaded = 0; fetchPosts(); }
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
